@@ -10,6 +10,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { CategoriaComponent } from './Components/cards/card-categoria/categoria.component';
 import { FooterComponent } from './Components/statics/footer/footer.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
+import { ProductosComponent } from './Components/productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CarritoComponent } from './Components/carrito/carrito.component';
     HomeComponent,
     CategoriaComponent,
     FooterComponent,
-    CarritoComponent
+    CarritoComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
