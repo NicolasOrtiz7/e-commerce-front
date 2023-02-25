@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Descripción
 
-Tienda de ropa simple con Angular y Spring boot
+Tienda de productos simple con Angular y Spring boot
 
 ## Tecnologías usadas
 
