@@ -11,6 +11,8 @@ import { CategoriaComponent } from './Components/cards/card-categoria/categoria.
 import { FooterComponent } from './Components/statics/footer/footer.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
 import { ProductosComponent } from './Components/productos/productos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ProductosComponent } from './Components/productos/productos.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
