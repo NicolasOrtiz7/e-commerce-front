@@ -110,25 +110,21 @@
       <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             <li>
-               <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Más
-                  nuevos</a>
-            </li>
-            <li>
-               <a href="#"
+               <a (click)="listProductoCategoria(categoria, 'BARATO')" [routerLink]="['/temporal']" [queryParams]="{categoria: categoria, orden: 'precio-menor'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Precio: Menor a
                   mayor</a>
             </li>
             <li>
-               <a href="#"
+               <a (click)="listProductoCategoria(categoria, 'CARO')" [routerLink]="['/temporal']" [queryParams]="{categoria: categoria, orden: 'precio-mayor'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Precio: Mayor a
                   menor</a>
             </li>
             <li>
-               <a href="#"
+               <a (click)="listProductoCategoria(categoria, 'ASC')" [routerLink]="['/temporal']" [queryParams]="{categoria: categoria, orden: 'a-z'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nombre: A-Z</a>
             </li>
             <li>
-               <a href="#"
+               <a (click)="listProductoCategoria(categoria, 'DESC')" [routerLink]="['/temporal']" [queryParams]="{categoria: categoria, orden: 'z-a'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nombre: Z-A</a>
             </li>
          </ul>
@@ -152,3 +148,6 @@
       max-width: 33.33%;
    }
 </style>
+
+
+

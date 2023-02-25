@@ -11,8 +11,10 @@ import { ProductoService } from 'src/app/Services/producto.service';
 })
 export class ProductosComponent implements OnInit{
   
+  // Traer los datos de los productos desde el home-component
   @Input() allProductos:Producto;
 
+  // Cantidad de stock por categoría
   remeras:number = 0;
   pantalones:number = 0;
   camperas:number = 0;
@@ -20,9 +22,13 @@ export class ProductosComponent implements OnInit{
   calzado:number = 0;
   gorros:number = 0;
 
+  // Listas de productos
   productos: Producto[];
   productoCategoria: any;
   cantidad: number;
+
+  // Categoría para el ordenamiento
+  categoria: string;
 
   constructor(
     private router:Router,
@@ -57,10 +63,14 @@ export class ProductosComponent implements OnInit{
     )
   }
   
-  listProductoCategoria(categoria:string){
-    this.productoService.listProductoCategoria(categoria).subscribe(
+  listProductoCategoria(categoria:string, orden:string="ASC"){
+    this.productoService.listProductoCategoria(categoria, orden).subscribe(
       data => {
+        console.log("EL orden es: " + orden)
         this.productoCategoria = data;
+
+        // Para filtrar por nombre, precio
+        this.categoria = categoria;
       },
       err => { console.log(err) }
     )

@@ -21,10 +21,15 @@ export class ProductoService {
   }
 
   
-  listProductoCategoria(cat: string) {
-    const filtro = { params: { categoria: cat } };
+  listProductoCategoria(cat: string, orden:string) {
+    const filtro = { params: { categoria: cat, orden:orden } };
     return this.http.get(this.URL + '/categoria', filtro);
   }
+
+  // listProductoCategoriaOrderByNombre(cat: string, order: string) {
+  //   const filtro = { params: { categoria: cat, orden: order } };
+  //   return this.http.get(this.URL + '/categoria', filtro);
+  // }
 
   saveProducto(producto:Producto): Observable<any>{
     return this.http.post(this.URL + "/nuevo", producto);
