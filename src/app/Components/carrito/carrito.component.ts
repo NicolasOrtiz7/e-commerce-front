@@ -9,14 +9,25 @@ import { CarritoService } from 'src/app/Services/carrito.service';
 })
 export class CarritoComponent implements OnInit{
 
-  carrito = this.carritoService.carrito;
+  carritoProductoSet = this.carritoService.carritoSet; // Carrito de compras
+  
+  getTotalPrice:number = this.carritoService.totalPrice(); // Precio total
 
   constructor(private carritoService:CarritoService){}
 
   ngOnInit(): void {
   }
 
-  
+  deleteProductoSet(producto:Producto){
+    this.carritoService.deleteProductoSet(producto);
+  }
 
+  addQuantity(producto:Producto){
+    this.carritoService.addQuantity(producto);
+  }
+
+  removeQuantity(producto:Producto){
+    this.carritoService.removeQuantity(producto);
+  }
 
 }

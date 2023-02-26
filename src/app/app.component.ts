@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Producto } from './Classes/producto';
 import { CarritoService } from './Services/carrito.service';
 
@@ -10,38 +11,51 @@ import { CarritoService } from './Services/carrito.service';
 export class AppComponent implements OnInit {
 
   // Carrito de compras, guarda el id de cada producto
-  carrito:Producto[];
+  carritoProductoSet = this.carritoService.carritoSet;
 
-  carritoCompras = this.carritoService.carrito;
-  
-  carritoSinRepetidos = new Set(this.carritoCompras);
+  carritoCompras = this.carritoService.carrito; // este ya no lo uso, eliminar.
 
   totalPrice:number;
 
-  constructor(private carritoService: CarritoService){}
+  constructor(
+    private carritoService: CarritoService,
+    private router:Router
+    ){}
 
   ngOnInit(): void {
     this.listProductos()
   }
 
-  listProductos(){
-    this.carrito = this.carritoService.carrito;
-    console.log("carrito de compras" + this.carrito)
+  listProductos(){ // este creo que ya no hace nada, (verificar)
+    this.carritoProductoSet = this.carritoService.carritoSet;
+    console.log("ListProductos()")
+    console.log(this.carritoProductoSet)
   }
 
   comprar(){
-    console.log("============================================")
-    console.log(this.carritoCompras)
-    console.log("=============== set ==================")
-    console.log(this.carritoSinRepetidos)
-    console.log("============================================")
+    this.router.navigate(["/carrito"])
 
-    // Calcular el precio total
+    // Calcular el precio total. ESTO ya no funciona, eliminar
     this.totalPrice = this.carritoCompras.reduce((total, producto) => total + producto.precio, 0);
-
     console.log("PRECIO TOTAL: " + this.totalPrice)
 
   }
+
+
+
+
+
+
+  // =============================================
+
+
+  
+  deleteProductoSet(producto:Producto){
+    this.carritoService.deleteProductoSet(producto);
+  }
+
+
+
 
 
 }

@@ -27,9 +27,9 @@ export class ProductosComponent implements OnInit{
   productos: Producto[];
   productoCategoria: any;
   cantidad: number;
-  cantidadCarrito:number = this.carritoService.carrito.length;
+  cantidadCarrito:number = this.carritoService.carrito.length; // Lo uso en el numerito del sidebar (carrito de compras) para mostrar la cantidad de productos que hay en el carrito. Pero ya no sirve, cambiar por this.carritoService.carritoSet.size;
 
-  // Categoría para el ordenamiento
+  // Categoría para el filtrado/ordenamiento
   categoria: string;
 
   constructor(
@@ -68,7 +68,6 @@ export class ProductosComponent implements OnInit{
   listProductoCategoria(categoria:string, orden:string="ASC"){
     this.productoService.listProductoCategoria(categoria, orden).subscribe(
       data => {
-        console.log("EL orden es: " + orden)
         this.productoCategoria = data;
 
         // Para filtrar por nombre, precio

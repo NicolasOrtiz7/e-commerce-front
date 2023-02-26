@@ -34,16 +34,14 @@ export class CardComponent implements OnInit{
   addProducto(producto:Producto){
     this.productoService.listProductoId(producto.id_producto).subscribe(
       data => {
-        console.log("DATA");
-        console.log(data); 
-        this.carritoService.addProducto(producto);
+        this.carritoService.addProductoSet(producto);
         },
       err => { console.log(err) }
     )
   }
 
   deleteProducto(producto:Producto){
-    this.carritoService.deleteProducto(producto);
+    this.carritoService.deleteProductoSet(producto);
   }
 
 }
