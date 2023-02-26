@@ -1,0 +1,21 @@
+
+
+.modal-carrito-compras{
+    position: absolute; 
+    top: -240px;
+}
+
+@media screen and (max-width: 800px){
+
+    .modal-carrito-compras{
+        position: absolute;
+        top: 0;
+    }
+}
+
+@media screen and (min-width:767px) and (max-width: 801px) {
+    .modal-carrito-compras{
+        position: absolute;
+        top: -350px;
+    }
+}

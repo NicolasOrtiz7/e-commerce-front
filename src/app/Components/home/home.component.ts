@@ -13,10 +13,9 @@ export class HomeComponent implements OnInit{
 
   productos:Producto[];
   productoCategoria: any;
-  // producto
 
   constructor(
-    private router:Router,
+    private router: Router,
     private http: HttpClient,
     private productoService: ProductoService
     ){}
@@ -29,12 +28,12 @@ export class HomeComponent implements OnInit{
       this.productoService.listAllProductos().subscribe(
         data => {
           this.productos = data;
-          console.log("hola");
-          console.log(data)
         },
         err => {console.log(err)}
       )
     }
+
+    
 
 
 }

@@ -14,10 +14,10 @@
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
       <ul class="space-y-2">
          <li>
-            <a href="#"
+            <a [routerLink]="['/temporal']"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" width="25px" alt="" />
-               <span class="ml-3">Inicio</span>
+               <span class="ml-3">Ver todo (arreglar)</span>
             </a>
          </li>
          <li >
@@ -86,7 +86,8 @@
                <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" width="25px" alt="" />
                <span class="flex-1 ml-3 whitespace-nowrap">Carrito de compras</span>
                <span
-                  class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                  class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                  {{cantidadCarrito}}</span>
             </a>
          </li>
       </ul>

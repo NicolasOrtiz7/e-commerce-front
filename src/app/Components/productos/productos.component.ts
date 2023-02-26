@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/Classes/producto';
+import { CarritoService } from 'src/app/Services/carrito.service';
 import { ProductoService } from 'src/app/Services/producto.service';
 
 @Component({
@@ -26,6 +27,7 @@ export class ProductosComponent implements OnInit{
   productos: Producto[];
   productoCategoria: any;
   cantidad: number;
+  cantidadCarrito:number = this.carritoService.carrito.length;
 
   // Categoría para el ordenamiento
   categoria: string;
@@ -33,12 +35,12 @@ export class ProductosComponent implements OnInit{
   constructor(
     private router:Router,
     private http: HttpClient,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private carritoService: CarritoService
     ){}
 
   ngOnInit(): void {
     this.listAllProductos();
-    this.listProductoCategoria("remeras");
   }
 
   // Para cargar el número de prendas que hay en cada categoría
