@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Producto } from '../Classes/producto';
 
@@ -6,12 +7,14 @@ import { Producto } from '../Classes/producto';
 })
 export class CarritoService {
 
+  URL = "http://localhost:8080/carrito";
+
   // Este servicio es para agregar productos al carrito de compras
 
   // Debe estar inicializado vacío
   carrito:Producto[] = [];   // esta ya no lo uso mas, ahora uso el carritoSet
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   addProducto(producto:Producto){ // esta ya no lo uso mas, ahora uso el addProductoSet
       this.carrito.push(producto);
@@ -63,7 +66,26 @@ export class CarritoService {
     return totalPrice;
   }
 
-  
+  // ====================================================
+  // usar este
+
+  // Recibe todos los carritos de compras de todos los usuarios (usar antes de implementar el login)
+  getCarrito(){
+    return this.http.get(this.URL + "/listar");
+  }
+
+  // Recibe el carrito de compras de un usuario (usar cuando implemente el login)
+  getCarritoById(id:number){
+    return this.http.get(this.URL + "/listar/" + id);
+  }
+
+  addCarritoById(producto:Producto){
+    // return this.http.post()
+  }
+
+  deleteCarritoById(id:number){
+    return this.http.delete(this.URL + "/eliminar/producto/" + id);
+  }
 
 
 

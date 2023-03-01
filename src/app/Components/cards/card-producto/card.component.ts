@@ -44,4 +44,11 @@ export class CardComponent implements OnInit{
     this.carritoService.deleteProductoSet(producto);
   }
 
+  // =============================
+  // NUEVO
+
+  addCarrito(producto:Producto){
+    this.carritoService
+  }
+
 }

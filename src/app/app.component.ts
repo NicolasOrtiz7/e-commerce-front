@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.listProductos()
+    this.getCarrito(2)
   }
 
   listProductos(){ // este creo que ya no hace nada, (verificar)
@@ -54,7 +55,32 @@ export class AppComponent implements OnInit {
     this.carritoService.deleteProductoSet(producto);
   }
 
+// =============================================
+// ultimo
 
+arrayCarrito:any = []
+getCarrito(id:number){
+  this.carritoService.getCarritoById(id).subscribe(
+    data => {
+      this.arrayCarrito = data
+      console.log(this.arrayCarrito)
+    }
+  )
+}
+
+deleteCarrito(id:number){
+  this.carritoService.deleteCarritoById(id).subscribe(
+    data => {
+      console.log("Producto eliminado. ID: " + id)
+    this.getCarrito(2)
+    },
+    err => { console.log(err) }
+  )
+}
+
+// test(){
+//   this.getCarrito()
+// }
 
 
 
