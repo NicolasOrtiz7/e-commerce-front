@@ -29,8 +29,6 @@ export class AppComponent implements OnInit {
 
   listProductos(){ // este creo que ya no hace nada, (verificar)
     this.carritoProductoSet = this.carritoService.carritoSet;
-    console.log("ListProductos()")
-    console.log(this.carritoProductoSet)
   }
 
   comprar(){
@@ -43,27 +41,14 @@ export class AppComponent implements OnInit {
   }
 
 
-
-
-
-
-  // =============================================
-
-
-  
-  deleteProductoSet(producto:Producto){
-    this.carritoService.deleteProductoSet(producto);
-  }
-
 // =============================================
 // ultimo
 
 arrayCarrito:any = []
 getCarrito(id:number){
-  this.carritoService.getCarritoById(id).subscribe(
+  this.carritoService.getCarritoById(/*id*/).subscribe(
     data => {
       this.arrayCarrito = data
-      console.log(this.arrayCarrito)
     }
   )
 }

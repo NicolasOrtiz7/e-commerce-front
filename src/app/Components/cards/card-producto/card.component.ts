@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
+import { Carrito } from 'src/app/Classes/carrito';
 import { Producto } from 'src/app/Classes/producto';
+import { Usuario } from 'src/app/Classes/usuario';
 import { CarritoService } from 'src/app/Services/carrito.service';
 import { ProductoService } from 'src/app/Services/producto.service';
 
@@ -16,12 +19,13 @@ export class CardComponent implements OnInit{
   @Input() allProductos:Producto;
 
   constructor(
-    private router:Router,
     private productoService:ProductoService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private appComponent: AppComponent
   ){}
 
   ngOnInit(){
+    this.getUsuarioActual()
   }
 
   listProductoId(id:number){
@@ -31,24 +35,39 @@ export class CardComponent implements OnInit{
     )
   }
 
-  addProducto(producto:Producto){
-    this.productoService.listProductoId(producto.id_producto).subscribe(
-      data => {
-        this.carritoService.addProductoSet(producto);
-        },
-      err => { console.log(err) }
-    )
-  }
-
-  deleteProducto(producto:Producto){
-    this.carritoService.deleteProductoSet(producto);
-  }
 
   // =============================
   // NUEVO
 
+
+  usuarioActual:Usuario;
+  getUsuarioActual(){
+    this.carritoService.getUsuarioActual().subscribe(
+      data => {
+        this.usuarioActual = data
+      } 
+    )
+  }
+
+  nuevoCarrito:any = {}; // Habia que inicializar!!!!!!!
   addCarrito(producto:Producto){
-    this.carritoService
+
+    this.nuevoCarrito.productos = producto;
+    this.nuevoCarrito.id = undefined; // Para que se envie vacio y el backend le asigne autoincrement
+    this.nuevoCarrito.usuario = this.usuarioActual;
+    
+    console.log(this.nuevoCarrito)
+
+    this.carritoService.addCarritoById(this.nuevoCarrito).subscribe(
+      data =>{
+        console.log("Agregado a carrito correctamente")
+        console.log(this.nuevoCarrito)
+        this.appComponent.getCarrito(2) // Para refrescar los datos
+      },
+      err => {console.log(err)}
+    )
+
+
   }
 
 }

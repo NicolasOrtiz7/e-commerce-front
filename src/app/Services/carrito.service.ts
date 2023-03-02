@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Carrito } from '../Classes/carrito';
 import { Producto } from '../Classes/producto';
 
 @Injectable({
@@ -16,37 +17,13 @@ export class CarritoService {
 
   constructor(private http:HttpClient) { }
 
-  addProducto(producto:Producto){ // esta ya no lo uso mas, ahora uso el addProductoSet
-      this.carrito.push(producto);
-  }
-
-  deleteProducto(producto:Producto){ // esta ya no lo uso mas, ahora uso el removeProductoSet
-    
-    // Busca el índice del producto
-    const index = this.carrito.findIndex(p => p.id_producto === producto.id_producto);
-
-    // Eliminamos el producto del array
-    if (index !== -1) {
-      this.carrito.splice(index, 1);
-    }
-  }
 
 
   // ====================================================
 
-  // Este es el que funciona bien. Eliminar el de la linea 18
+  // Copiar estas funciones a la nueva forma y eliminarlas
 
   carritoSet = new Set<Producto>;
-  
-  addProductoSet(producto:Producto){
-    producto.cantidadCarrito = 1; // Inicializa la cantidad de productos que se agregan al carrito
-    this.carritoSet.add(producto);
-  }
-
-  deleteProductoSet(producto:Producto){
-    producto.cantidadCarrito = 0; // Elimina la cantidad de productos del carrito
-    this.carritoSet.delete(producto)
-  }
 
   addQuantity(producto:Producto){ // Agrega cantidad de un producto al carrito
     producto.cantidadCarrito++
@@ -69,19 +46,43 @@ export class CarritoService {
   // ====================================================
   // usar este
 
+
+  // Simula que el usuario tiene una sesion activa
+  // este no lo uso en ningun lado
+  usuarioActual:{
+    "direccion": "barc",
+    "email": "l@gmail.com",
+    "id": 2,
+    "nombre": "admin",
+    "password": "admin",
+    "rol":{
+      "id": 1,
+      "nombre": "admin"
+    },
+    "telefono": 10,
+    "username": "admin"
+  }
+  getUsuarioActual(){
+    return this.http.get("http://localhost:8080/usuarios" + "/listar/" + 2)
+  }
+
+
+
   // Recibe todos los carritos de compras de todos los usuarios (usar antes de implementar el login)
   getCarrito(){
     return this.http.get(this.URL + "/listar");
   }
 
   // Recibe el carrito de compras de un usuario (usar cuando implemente el login)
-  getCarritoById(id:number){
-    return this.http.get(this.URL + "/listar/" + id);
+  getCarritoById(/*id:number*/ ){
+    return this.http.get(this.URL + "/listar/" + 2); //despues agregar el parametro id:number
   }
 
-  addCarritoById(producto:Producto){
-    // return this.http.post()
+
+  addCarritoById(carrito:Carrito){
+    return this.http.post(this.URL + "/nuevo", carrito);
   }
+
 
   deleteCarritoById(id:number){
     return this.http.delete(this.URL + "/eliminar/producto/" + id);

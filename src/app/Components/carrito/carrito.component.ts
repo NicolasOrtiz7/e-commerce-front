@@ -10,16 +10,23 @@ import { CarritoService } from 'src/app/Services/carrito.service';
 export class CarritoComponent implements OnInit{
 
   carritoProductoSet = this.carritoService.carritoSet; // Carrito de compras
+
+  carritoDeCompras:any;
   
   getTotalPrice:number = this.carritoService.totalPrice(); // Precio total
 
   constructor(private carritoService:CarritoService){}
 
   ngOnInit(): void {
+    this.getCarrito()
   }
 
-  deleteProductoSet(producto:Producto){
-    this.carritoService.deleteProductoSet(producto);
+  getCarrito(/*id:number*/){ // Despues agregar el parametro id:number
+    this.carritoService.getCarritoById(/*id*/).subscribe(
+      data => {
+        this.carritoDeCompras = data
+      }
+    )
   }
 
   addQuantity(producto:Producto){
