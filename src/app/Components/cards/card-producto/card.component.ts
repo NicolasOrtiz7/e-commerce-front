@@ -50,6 +50,25 @@ export class CardComponent implements OnInit{
   }
 
   nuevoCarrito:any = {}; // Habia que inicializar!!!!!!!
+  // addCarrito(producto:Producto){
+
+  //   this.nuevoCarrito.productos = producto;
+  //   this.nuevoCarrito.id = undefined; // Para que se envie vacio y el backend le asigne autoincrement
+  //   this.nuevoCarrito.usuario = this.usuarioActual;
+    
+  //   console.log(this.nuevoCarrito)
+
+  //   this.carritoService.addProductoQuantity(this.nuevoCarrito).subscribe(
+  //     data =>{
+  //       console.log("Agregado a carrito correctamente")
+  //       console.log(this.nuevoCarrito)
+  //       this.appComponent.getCarrito(2) // Para refrescar los datos
+  //     },
+  //     err => {console.log(err)}
+  //   )
+
+
+  // }
   addCarrito(producto:Producto){
 
     this.nuevoCarrito.productos = producto;
@@ -58,15 +77,9 @@ export class CardComponent implements OnInit{
     
     console.log(this.nuevoCarrito)
 
-    this.carritoService.addCarritoById(this.nuevoCarrito).subscribe(
-      data =>{
-        console.log("Agregado a carrito correctamente")
-        console.log(this.nuevoCarrito)
-        this.appComponent.getCarrito(2) // Para refrescar los datos
-      },
-      err => {console.log(err)}
-    )
+    this.carritoService.addProduct(this.nuevoCarrito)
 
+    
 
   }
 

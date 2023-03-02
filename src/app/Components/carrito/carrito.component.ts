@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Carrito } from 'src/app/Classes/carrito';
 import { Producto } from 'src/app/Classes/producto';
 import { CarritoService } from 'src/app/Services/carrito.service';
 
@@ -9,11 +10,10 @@ import { CarritoService } from 'src/app/Services/carrito.service';
 })
 export class CarritoComponent implements OnInit{
 
-  carritoProductoSet = this.carritoService.carritoSet; // Carrito de compras
 
   carritoDeCompras:any;
   
-  getTotalPrice:number = this.carritoService.totalPrice(); // Precio total
+  getTotalPrice:number = this.carritoService.totalPriceCarrito(); // Precio total
 
   constructor(private carritoService:CarritoService){}
 
@@ -22,19 +22,20 @@ export class CarritoComponent implements OnInit{
   }
 
   getCarrito(/*id:number*/){ // Despues agregar el parametro id:number
-    this.carritoService.getCarritoById(/*id*/).subscribe(
-      data => {
-        this.carritoDeCompras = data
-      }
-    )
+    this.carritoService.getCarrito(/*id*/).subscribe(
+      data => this.carritoDeCompras = data)
   }
 
-  addQuantity(producto:Producto){
-    this.carritoService.addQuantity(producto);
+  addQuantity(carrito:Carrito){
+    this.carritoService.addProductImpl(carrito);
+    setTimeout(() => this.getCarrito(), 100); // Para actualizar el número
+
   }
 
-  removeQuantity(producto:Producto){
-    this.carritoService.removeQuantity(producto);
+  removeQuantity(carrito:Carrito){
+    this.carritoService.subtractProductImpl(carrito);
+    setTimeout(() => this.getCarrito(), 100); // Para actualizar el número
   }
+
 
 }

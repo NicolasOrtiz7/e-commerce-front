@@ -6,5 +6,6 @@ export class Carrito {
     id:number;
     usuario:Usuario;
     productos:Producto;
+    cantidad:number;
 
 }
