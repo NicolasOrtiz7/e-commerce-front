@@ -31,6 +31,9 @@ export class ProductosComponent implements OnInit {
   // Categoría para el filtrado/ordenamiento
   categoria: string;
 
+  // Saber si existen query params
+  queryParams: any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private productoService: ProductoService,
@@ -38,30 +41,51 @@ export class ProductosComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // Carga todos los productos al inicio
+    this.listAllProductos();
+    this.countProductos()
 
     // Carga los productos con parámetros al entrar con link o botones
     this.activatedRoute.queryParams.subscribe(params => {
       // Guarda los query params de la url
-      const queryParams = this.activatedRoute.snapshot.queryParams;
+      this.queryParams = this.activatedRoute.snapshot.queryParams;
       // Llama al método que carga los productos y los filtra
-      this.productoService.listProductoCategoria(queryParams['categoria'], queryParams['categoria'])
+      this.productoService.listProductoCategoria(this.queryParams['categoria'], this.queryParams['categoria'])
         .subscribe(
           data => {
             this.productoCategoria = data;
             // Para filtrar por nombre, precio
-            this.categoria = queryParams['categoria'];
+            this.categoria = this.queryParams['categoria'];
           }, err => console.log(err))
     }
     );
-    // Carga todos los productos al inicio
-    this.listAllProductos();
   }
 
   // Cargar el número de prendas que hay en cada categoría
   listAllProductos() {
     this.productoService.listAllProductos().subscribe(
+      data => this.productos = data,
+      err => console.log(err)
+    )
+  }
+
+  // Carga los productos al presionar los botones del sidebar y del "ordenar por"
+  listProductoCategoria(categoria: string, orden: string = "ASC") {
+    this.productoService.listProductoCategoria(categoria, orden).subscribe(
       data => {
-        this.productos = data;
+        this.productoCategoria = data;
+
+        // Para filtrar por nombre, precio
+        this.categoria = categoria;
+      },
+      err => { console.log(err) }
+    )
+  }
+
+  countProductos() {
+    this.productoService.listAllProductos().subscribe(
+      data => {
+        // this.productos = data;
 
         this.productos.forEach((item: any) => {
 
@@ -74,19 +98,6 @@ export class ProductosComponent implements OnInit {
           if (a == "gorros") this.gorros++
 
         });
-      },
-      err => { console.log(err) }
-    )
-  }
-
-  // Carga los productos al presionar los botones del sidebar y del "ordenar por"
-  listProductoCategoria(categoria: string, orden: string = "ASC") {
-    this.productoService.listProductoCategoria(categoria, orden).subscribe(
-      data => {
-        this.productoCategoria = data;
-
-        // Para filtrar por nombre, precio
-        this.categoria = categoria;
       },
       err => { console.log(err) }
     )

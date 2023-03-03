@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:"home", component: HomeComponent},
   {path:"detalles/:id", component: DetallesProductoComponent},
   {path:"carrito", component: CarritoComponent},
-  {path:"temporal", component: ProductosComponent},
+  {path:"productos", component: ProductosComponent},
   {path:"**", redirectTo: "home"},
 ];
 

@@ -47,22 +47,25 @@
           <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600" style="z-index: 2;">
               <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a [routerLink]="['/temporal']" [queryParams]="{categoria: 'remeras'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Camisetas</a>
+                  <a [routerLink]="['/productos']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ver todo</a>
                 </li>
                 <li>
-                  <a [routerLink]="['/temporal']" [queryParams]="{categoria: 'buzos'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buzos</a>
+                  <a [routerLink]="['/productos']" [queryParams]="{categoria: 'remeras'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Camisetas</a>
                 </li>
                 <li>
-                  <a [routerLink]="['/temporal']" [queryParams]="{categoria: 'pantalones'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pantalones</a>
+                  <a [routerLink]="['/productos']" [queryParams]="{categoria: 'buzos'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Buzos</a>
                 </li>
                 <li>
-                  <a [routerLink]="['/temporal']" [queryParams]="{categoria: 'camperas'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Camperas</a>
+                  <a [routerLink]="['/productos']" [queryParams]="{categoria: 'pantalones'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pantalones</a>
                 </li>
                 <li>
-                  <a [routerLink]="['/temporal']" [queryParams]="{categoria: 'gorros'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Gorros</a>
+                  <a [routerLink]="['/productos']" [queryParams]="{categoria: 'camperas'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Camperas</a>
                 </li>
                 <li>
-                  <a [routerLink]="['/temporal']" [queryParams]="{categoria: 'calzado'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calzado</a>
+                  <a [routerLink]="['/productos']" [queryParams]="{categoria: 'gorros'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Gorros</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/productos']" [queryParams]="{categoria: 'calzado'}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calzado</a>
                 </li>
               </ul>
               
@@ -81,7 +84,7 @@
         </li>
         
         <li>
-          <a routerLink="/temporal" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">home productos</a>
+          <a routerLink="/productos" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">home productos</a>
         </li>
         
       </ul>
