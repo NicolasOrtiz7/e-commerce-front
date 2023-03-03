@@ -19,17 +19,12 @@ export class AppComponent implements OnInit {
     this.getCarrito(2)
   }
 
-  comprar() {
-    this.router.navigate(["/carrito"])
-  }
+  comprar() { this.router.navigate(["/carrito"]) }
 
 
   getCarrito(id: number) {
     this.carritoService.getCarrito(/*id*/).subscribe(
-      data => {
-        this.carritoDeCompras = data
-      }
-    )
+      data => this.carritoDeCompras = data )
   }
 
   deleteCarrito(id: number) {

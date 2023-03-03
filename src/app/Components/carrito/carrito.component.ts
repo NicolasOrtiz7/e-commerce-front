@@ -10,15 +10,28 @@ import { CarritoService } from 'src/app/Services/carrito.service';
 })
 export class CarritoComponent implements OnInit{
 
+  precioTotal:any;
 
   carritoDeCompras:any;
   
-  getTotalPrice:number = this.carritoService.totalPriceCarrito(); // Precio total
+  getTotalPrice:any = this.carritoService.totalPrice(); // Precio total
 
   constructor(private carritoService:CarritoService){}
 
   ngOnInit(): void {
     this.getCarrito()
+
+    // Obtener el precio total del carrito
+    // Pone un SetTimeout para simular el tiempo que tarda en hacer la peticion,
+    // esto se tiene que arreglar con promesas
+    this.carritoService.totalPrice()
+    setTimeout(() => this.precioTotal = this.carritoService.precioTotal, 500);
+    
+  }
+
+  restart(){
+    setTimeout(() => this.getCarrito(), 100); // Para actualizar el número
+    this.ngOnInit()
   }
 
   getCarrito(/*id:number*/){ // Despues agregar el parametro id:number
@@ -28,14 +41,19 @@ export class CarritoComponent implements OnInit{
 
   addQuantity(carrito:Carrito){
     this.carritoService.addProductImpl(carrito);
-    setTimeout(() => this.getCarrito(), 100); // Para actualizar el número
-
+    this.restart()
   }
 
   removeQuantity(carrito:Carrito){
     this.carritoService.subtractProductImpl(carrito);
-    setTimeout(() => this.getCarrito(), 100); // Para actualizar el número
+    this.restart()
   }
+
+  cleanCarrito(carrito:Carrito){
+    this.carritoService.cleanCarritoImpl(carrito.id)
+    this.restart()
+  }
+
 
 
 }

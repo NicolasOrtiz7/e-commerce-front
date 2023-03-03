@@ -72,23 +72,26 @@ export class CarritoService {
   // Añade un producto al carrito si no existe, y si existe le aumenta la cantidad
   addProductImpl(carrito: Carrito) {
     this.addProduct(carrito).subscribe(
-      data => console.log('AGREGADO STOCK'),
+      data => console.log('Producto agregado al carrito'),
       err => console.log(err))
-    }
+  }
 
 
   // Resta cantidad de un producto del carrito si existe, o lo elimina si la cantidad es 0
   subtractProductImpl(carrito: Carrito) {
     if (carrito.cantidad == 0) { // Si la cantidad del producto llega a 0, se elimina
-      console.log('Producto eliminado');
       this.cleanCarrito(carrito.id).subscribe(
-        data => console.log('HOLA'))
-      }
+        data => console.log('Carrito limpiado'))
+    }
 
     if (carrito.cantidad > 0) { // Si el producto existe en el carrito, se le resta 1
       this.subtractProduct(carrito).subscribe(
         data => console.log('Restado 1 cantidad'));
     } else console.log('Error, la cantidad no puede ser negativa');
+  }
+
+  cleanCarritoImpl(id:number){
+    this.cleanCarrito(id).subscribe(data => console.log("Producto eliminado"), err => console.log(err))
   }
 
 
@@ -101,7 +104,33 @@ export class CarritoService {
     return totalPrice;
   }
 
-  
+  // Hay que arreglar este método usando promesas (o async await, no me acuerdo cual)
+  precioTotal:number
+  totalPrice() {
+    let totalPrice = 0;
+    let pxq = 0;
+    let arrayTemporal: any = [];
+    this.getCarrito().subscribe(
+      data => {
+        arrayTemporal = data;
+        arrayTemporal.forEach(
+          (p: { cantidad: number; productos: { precio: number; }; }) => {
+
+            pxq = p.cantidad * p.productos.precio;
+            totalPrice += pxq
+          }
+        )
+        this.precioTotal = totalPrice
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+ 
+
+
 }
 
 
