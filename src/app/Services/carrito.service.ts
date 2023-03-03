@@ -137,15 +137,9 @@ export class CarritoService {
 /*
 
 
-- Calcular el precio total de todos los productos
 
   - Al ir a una URL con query params, los productos no se cargan a menos que apriete el 
     botón de la categoria
-
-  - Al apretar el botón de "agregar al carrito" del card-component, se debe actualizar
-    el carrito de compras del botón del navbar (app-component)
-
-  - Corregir el sidebar
 
   - Mostrar los productos uno al lado del otro
 
