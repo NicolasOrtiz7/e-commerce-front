@@ -58,7 +58,7 @@ export class CardComponent implements OnInit{
     
   //   console.log(this.nuevoCarrito)
 
-  //   this.carritoService.addProductoQuantity(this.nuevoCarrito).subscribe(
+  //   this.carritoService.addProduct(this.nuevoCarrito).subscribe(
   //     data =>{
   //       console.log("Agregado a carrito correctamente")
   //       console.log(this.nuevoCarrito)
@@ -67,8 +67,8 @@ export class CardComponent implements OnInit{
   //     err => {console.log(err)}
   //   )
 
-
   // }
+
   addCarrito(producto:Producto){
 
     this.nuevoCarrito.productos = producto;
@@ -77,9 +77,7 @@ export class CardComponent implements OnInit{
     
     console.log(this.nuevoCarrito)
 
-    this.carritoService.addProduct(this.nuevoCarrito)
-
-    
+    this.carritoService.addProductImpl(this.nuevoCarrito)
 
   }
 
