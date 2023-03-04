@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto } from '../Classes/producto';
+import { Categoria } from '../Classes/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class ProductoService {
     return this.http.get(this.URL + '/categoria', filtro);
   }
 
-  saveProducto(producto:Producto): Observable<any>{
+  saveProducto(producto:Producto){
     return this.http.post(this.URL + "/nuevo", producto);
   }
 
@@ -37,15 +38,7 @@ export class ProductoService {
     return this.http.delete(this.URL + "/delete/" + id);
   }
 
-  // Cargar categorías
 
-  getCategorias(){
-    return this.http.get("http://localhost:8080/categorias/listar");
-  }
-
-  getCategoriaById(id:number){
-    return this.http.get("http://localhost:8080/categorias/listar/" + id)
-  }
 
 
 }

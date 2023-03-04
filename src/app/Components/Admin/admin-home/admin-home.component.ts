@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/Classes/categoria';
 import { Producto } from 'src/app/Classes/producto';
+import { CategoriaService } from 'src/app/Services/categoria.service';
 import { ProductoService } from 'src/app/Services/producto.service';
 
 @Component({
@@ -14,17 +15,27 @@ export class AdminHomeComponent implements OnInit{
   producto:Producto = new Producto;
   categoria:Categoria = new Categoria;
 
-  // Cargar categorías
+  // Cargar datos
+  productos:any;
   categorias:any;
 
-  constructor(private productoService: ProductoService){}
+  constructor(private productoService: ProductoService, private categoriaService:CategoriaService){}
 
   ngOnInit(): void {
+    this.getProductos()
     this.getCategorias()
+    this.producto.categoria = this.categoria; // Asignar la categoria al producto
+  }
+
+  getProductos(){
+    this.productoService.listAllProductos().subscribe(
+      data => this.productos = data,
+      err => console.log(err)
+    )
   }
 
   getCategorias(){
-    this.productoService.getCategorias().subscribe(
+    this.categoriaService.getCategorias().subscribe(
       data => {
         this.categorias = data
         console.log(data)
@@ -33,28 +44,51 @@ export class AdminHomeComponent implements OnInit{
     )
   }
 
+
+  // =============================================================
   saveProducto(){
-    // Al guardar un producto con categoria da error porque necesita recibir un objeto Categoria
-    console.log(this.producto)
-    
     this.productoService.saveProducto(this.producto).subscribe(
-      data => console.log("Producto guardado correctamente"),
+      data => alert("Producto guardado correctamente"),
       err => console.log(err)
     )
   }
 
   updateProducto(id:number, producto:Producto){
     this.productoService.updateProducto(id, producto).subscribe(
-      data => console.log("Producto actualizado correctamente"),
+      data => alert("Producto actualizado correctamente"),
       err => console.log(err)
     )
   }
 
   deleteProducto(id:number){
-    this.productoService.deleteProducto(id).subscribe(
-      data => console.log("Producto eliminado correctamente"),
+
+    if(confirm("Seguro que deseas eliminar el producto?")){
+
+      this.productoService.deleteProducto(id).subscribe(
+        data => {alert("Producto eliminado correctamente"); this.ngOnInit()},
+        err => console.log(err))
+
+    } 
+    else alert("No eliminado")
+  }
+  // =============================================================
+  saveCategoria(){
+    this.categoriaService.saveCategoria(this.categoria).subscribe(
+      data => {alert("Categoria creada correctamente"); this.ngOnInit()},
       err => console.log(err)
     )
+  }
+
+  deleteCategoria(id:number){
+
+    if(confirm("Seguro que deseas eliminar la categoria?")){
+
+      this.categoriaService.deleteCategoria(id).subscribe(
+        data => {alert("Categoria eliminada correctamente"); this.ngOnInit()},
+        err => console.log(err))
+
+    } 
+    else alert("No eliminado")
   }
 
 }
