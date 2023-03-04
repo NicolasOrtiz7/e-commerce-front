@@ -10,7 +10,6 @@ export class Producto {
     cantidad:number;
     categoria:Categoria;
 
-    cantidadCarrito:number;
 
 
 }

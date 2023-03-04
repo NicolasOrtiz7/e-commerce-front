@@ -37,5 +37,15 @@ export class ProductoService {
     return this.http.delete(this.URL + "/delete/" + id);
   }
 
+  // Cargar categorías
+
+  getCategorias(){
+    return this.http.get("http://localhost:8080/categorias/listar");
+  }
+
+  getCategoriaById(id:number){
+    return this.http.get("http://localhost:8080/categorias/listar/" + id)
+  }
+
 
 }

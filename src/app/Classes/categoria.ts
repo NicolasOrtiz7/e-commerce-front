@@ -1,6 +1,7 @@
 export class Categoria {
 
-    id_categoria:number;
+    id:number;
     nombre:string;
+    imagen:string;
 
 }
