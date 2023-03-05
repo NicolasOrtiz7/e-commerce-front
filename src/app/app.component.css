@@ -5,6 +5,12 @@
     top: -240px;
 }
 
+.img-cart{
+    width: 150px;
+    height: 95px;
+    overflow: hidden;
+}
+
 @media screen and (max-width: 800px){
 
     .modal-carrito-compras{
