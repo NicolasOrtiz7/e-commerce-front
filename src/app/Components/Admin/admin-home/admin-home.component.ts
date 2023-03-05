@@ -22,30 +22,38 @@ export class AdminHomeComponent implements OnInit{
   constructor(private productoService: ProductoService, private categoriaService:CategoriaService){}
 
   ngOnInit(): void {
-    this.getProductos()
-    this.getCategorias()
     this.producto.categoria = this.categoria; // Asignar la categoria al producto
+    this.getCategorias()
+    this.getProductos()
+  }
+
+  getProductoById(id:number){
+    this.productoService.listProductoId(id).subscribe(
+      data => this.producto = data,
+      err => console.log(err))
   }
 
   getProductos(){
     this.productoService.listAllProductos().subscribe(
       data => this.productos = data,
-      err => console.log(err)
-    )
+      err => console.log(err))
+  }
+
+  getCategoriaById(id:number){
+    this.categoriaService.getCategoriaById(id).subscribe(
+      data => this.categoria = data,
+      err => console.log(err))
   }
 
   getCategorias(){
     this.categoriaService.getCategorias().subscribe(
-      data => {
-        this.categorias = data
-        console.log(data)
-    },
-      err => console.log(err)
-    )
+      data => this.categorias = data,
+      err => console.log(err))
   }
 
 
   // =============================================================
+
   saveProducto(){
     this.productoService.saveProducto(this.producto).subscribe(
       data => alert("Producto guardado correctamente"),
@@ -61,17 +69,16 @@ export class AdminHomeComponent implements OnInit{
   }
 
   deleteProducto(id:number){
-
     if(confirm("Seguro que deseas eliminar el producto?")){
-
       this.productoService.deleteProducto(id).subscribe(
         data => {alert("Producto eliminado correctamente"); this.ngOnInit()},
         err => console.log(err))
-
-    } 
-    else alert("No eliminado")
+    } else alert("No eliminado")
   }
+
+
   // =============================================================
+
   saveCategoria(){
     this.categoriaService.saveCategoria(this.categoria).subscribe(
       data => {alert("Categoria creada correctamente"); this.ngOnInit()},
@@ -79,16 +86,24 @@ export class AdminHomeComponent implements OnInit{
     )
   }
 
+  updateCategoria(id:number, categoria:Categoria){
+    this.categoriaService.updateCategoria(id, categoria).subscribe(
+      data => alert("Categoria editada correctamente"),
+      err => console.log(err)
+    )
+  }
+
   deleteCategoria(id:number){
-
     if(confirm("Seguro que deseas eliminar la categoria?")){
-
       this.categoriaService.deleteCategoria(id).subscribe(
         data => {alert("Categoria eliminada correctamente"); this.ngOnInit()},
         err => console.log(err))
-
-    } 
-    else alert("No eliminado")
+    } else alert("No eliminado")
   }
 
+
 }
+
+// Al presionar el botón de editar lanza algunos errores en consola, 
+// pero funciona bien al editar y guardar.
+// Al recargar la página, las imágenes no se cargan al editar (el nombre de la imagen)

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UrlHandlingStrategy } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Categoria } from '../Classes/categoria';
 
@@ -17,12 +18,16 @@ export class CategoriaService {
     return this.http.get(this.URL + "/listar");
   }
 
-  getCategoriaById(id:Categoria): Observable<Categoria>{
+  getCategoriaById(id:number): Observable<Categoria>{
     return this.http.get<Categoria>(this.URL + "/listar/" + id)
   }
 
   saveCategoria(categoria:Categoria){
     return this.http.post(this.URL + "/nuevo", categoria);
+  }
+
+  updateCategoria(id:number, categoria:Categoria){
+    return this.http.put(this.URL + "/editar/" + id, categoria);
   }
 
   deleteCategoria(id:number){
