@@ -1,0 +1,7 @@
+
+.form-container{
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    width: 80%; 
+    margin: 0 auto;
+    padding: 20px;
+}
