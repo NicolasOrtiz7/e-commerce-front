@@ -15,7 +15,7 @@ export class FinalizarCompraComponent implements OnInit{
       
   }
 
-  formStep:number = 1;
+  formStep:number = 1; // Cambiar los *ngIf
 
   next(){
     this.formStep++

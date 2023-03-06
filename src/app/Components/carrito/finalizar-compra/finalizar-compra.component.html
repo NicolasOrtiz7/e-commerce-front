@@ -79,7 +79,7 @@
 <!-- FORMULARIO INFORMACION CUENTA -->
 
 <br><br><br>
-<div *ngIf="formStep == 2" class="form-container">
+<div *ngIf="formStep == 1" class="form-container">
     
     <ol class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4">
         <li class="flex items-center">
@@ -148,7 +148,7 @@
 <br><br><br>
 
 
-<div *ngIf="formStep == 3" class="form-container">
+<div *ngIf="formStep == 1" class="form-container">
 
     <ol class="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4">
         <li class="flex items-center">
@@ -186,18 +186,20 @@
     <b>Información de entrega</b>
     <p>Nombre y Apellido: </p>
     <p>Correo electrónico: </p>
-    <p>Dirección de entrega: </p>
     <p>Número de teléfono</p>
     <p>Provincia: </p>
     <p>Ciudad: </p>
+    <p>Dirección de entrega: </p>
 
     <br><br>
     
     <b>Información de pago</b>
     <p>Método de pago: </p>
+    <p>Tarjeta terminada en: xxxx-xxxx-1213</p>
     <p>Tipo de documento</p>
     <p>DNI titular: </p>
-    <p>Tarjeta terminada en: xxxx-xxxx-1213</p>
+
+    <br>
 
     <!-- Previous Button -->
 <button (click)="back()" style="margin-right: 7px;" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Volver</button>
