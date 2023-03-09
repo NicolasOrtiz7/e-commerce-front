@@ -1,78 +1,27 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
-<!-- <div class="bg-gray-100">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-15">
-      <h2 class="text-4xl font-bold text-gray-900">Categorías</h2> -->
 
-      <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-        <div class="group relative">
-          <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-            <img src="https://lasaladaferia.com/wp-content/uploads/2021/06/D_NQ_NP_789878-MLA31355994059_072019-O.jpg" alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug." class="h-full w-full object-cover object-center">
-          </div>
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Camisetas
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Descripcion</p>
-        </div>
 
-        <div class="group relative">
-          <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_918955-MLA52593241818_112022-O.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center">
-          </div>
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Pantalones
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Descripcion</p>
-        </div>
+<div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0" style="gap: 30px;">
 
-        <div class="group relative">
-          <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-            <img src="https://d368r8jqz0fwvm.cloudfront.net/9146-product_lg/campera-de-hombre-dover.jpg" alt="Collection of four insulated travel bottles on wooden shelf." class="h-full w-full object-cover object-center">
-          </div>
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Camperas
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Descripcion</p>
-        </div>
-      </div>
-      
-      <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-        <div class="group relative">
-          <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-            <img src="https://www.newbalance.com.ar/media/catalog/product/cache/4/thumbnail/9df78eab33525d08d6e5fb8d27136e95/z/a/zapatillas-hombre-new-balance-x-90-msx90crh_nb_02_i.jpg" alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug." class="h-full w-full object-cover object-center">
-          </div>
-          <h3 class="mt-6 text-sm text-gray-500">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              Calzado
-            </a>
-          </h3>
-          <p class="text-base font-semibold text-gray-900">Descripcion</p>
-        </div>
+  <div *ngFor="let temp of categorias" class="group relative" style="border: 1px solid gainsboro;">
 
-      
-    <!-- </div>
+    <div
+      class="relative h-80 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+
+      <img src="https://lasaladaferia.com/wp-content/uploads/2021/06/D_NQ_NP_789878-MLA31355994059_072019-O.jpg"
+        alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug."
+        class="h-full w-full object-cover object-center">
+
+    </div>
+
+    <h3 class="mt-6 text-sm text-gray-500">
+      <a class="card-info" href="#">
+        <span class="absolute inset-0"></span>
+        Descripcion
+      </a>
+    </h3>
+
+    <p class="card-info text-base font-semibold text-gray-900">{{temp.nombre}}</p>
+
   </div>
-</div> -->
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Carrito } from 'src/app/Classes/carrito';
@@ -55,6 +55,12 @@ export class CardComponent implements OnInit{
 
     setTimeout(() => this.appComponent.getCarrito(2), 200); // Recargar el carrito
 
+  }
+
+  // Enviar id del producto clickeado para cargar los detalles
+  @Output() idProducto = new EventEmitter<number>();
+  sendDetails(id:number) {
+    this.idProducto.emit(id);
   }
 
 }
