@@ -63,4 +63,7 @@ export class CardComponent implements OnInit{
     this.idProducto.emit(id);
   }
 
+
+
+
 }

@@ -9,6 +9,7 @@ export class Producto {
     precio:number;
     cantidad:number;
     categoria:Categoria;
+    destacado:number;
 
 
 
