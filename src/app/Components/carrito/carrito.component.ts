@@ -49,8 +49,8 @@ export class CarritoComponent implements OnInit{
     this.restart()
   }
 
-  cleanCarrito(carrito:Carrito){
-    this.carritoService.cleanCarritoImpl(carrito.id)
+  cleanProducto(carrito:Carrito){
+    this.carritoService.cleanProductoImpl(carrito.id)
     this.restart()
   }
 

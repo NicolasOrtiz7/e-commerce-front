@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit{
   }
 
   cleanCarrito(carrito:Carrito){
-    this.carritoService.cleanCarritoImpl(carrito.id)
+    this.carritoService.cleanProductoImpl(carrito.id)
     this.restart()
   }
 

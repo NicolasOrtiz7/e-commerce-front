@@ -10,8 +10,8 @@ import { ProductoService } from 'src/app/Services/producto.service';
 })
 export class DetallesProductoComponent implements OnInit{
 
-  producto:Producto;
-  id:number =1;
+  producto:Producto = new Producto();
+  id:number;
 
   constructor(private productoService:ProductoService, private activatedRoute:ActivatedRoute){}
 

@@ -57,6 +57,10 @@ export class CarritoService {
     return this.http.post(this.URL + '/restar', carrito);
   }
 
+  cleanProducto(id: number) {
+    return this.http.delete(this.URL + '/eliminar/producto/' + id);
+  }
+
   cleanCarrito(id: number) {
     return this.http.delete(this.URL + '/eliminar/' + id);
   }
@@ -90,8 +94,8 @@ export class CarritoService {
     } else console.log('Error, la cantidad no puede ser negativa');
   }
 
-  cleanCarritoImpl(id:number){
-    this.cleanCarrito(id).subscribe(data => console.log("Producto eliminado"), err => console.log(err))
+  cleanProductoImpl(id:number){
+    this.cleanProducto(id).subscribe(data => console.log("Producto eliminado"), err => console.log(err))
   }
 
 

@@ -35,7 +35,7 @@ export class CardComponent implements OnInit{
     )
   }
 
-  usuarioActual:Usuario;
+  usuarioActual:any;
   getUsuarioActual(){
     this.carritoService.getUsuarioActual().subscribe(
       data => this.usuarioActual = data )
