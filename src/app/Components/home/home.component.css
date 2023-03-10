@@ -1,0 +1,11 @@
+.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  app-card {
+    width: 30%; 
+  }
+  
