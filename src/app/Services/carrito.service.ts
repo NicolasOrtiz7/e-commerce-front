@@ -58,7 +58,7 @@ export class CarritoService {
   }
 
   cleanCarrito(id: number) {
-    return this.http.delete(this.URL + '/eliminar/producto/' + id);
+    return this.http.delete(this.URL + '/eliminar/' + id);
   }
 
 
@@ -138,11 +138,6 @@ export class CarritoService {
 
 
 
-  - Al ir a una URL con query params, los productos no se cargan a menos que apriete el 
-    botón de la categoria
-
-  - Mostrar los productos uno al lado del otro
-
   - Arreglar botones que al ir a una página no funciona y hay que recargarla
 
   - Sidebar Página para ver todos los productos sin filtros
@@ -150,14 +145,10 @@ export class CarritoService {
   - Página de producto
 
 
-
   - Agregar seguridad
 
   - Agregar carga de imágenes
 
-  - CRUD de productos, categorías y usuarios
-
-  - Compras y detalles de compras
 
 
 */
