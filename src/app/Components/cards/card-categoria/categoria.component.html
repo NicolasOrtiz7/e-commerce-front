@@ -14,7 +14,7 @@
     </div>
 
     <h3 class="mt-6 text-sm text-gray-500">
-      <a class="card-info" href="#">
+      <a [routerLink]="['/productos']" [queryParams]="{categoria: temp.nombre}" class="card-info" href="#">
         <span class="absolute inset-0"></span>
         Descripcion
       </a>

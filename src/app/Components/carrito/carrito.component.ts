@@ -12,7 +12,7 @@ export class CarritoComponent implements OnInit{
 
   precioTotal:any;
 
-  carritoDeCompras:any;
+  carritoDeCompras:any = [];
   
   getTotalPrice:any = this.carritoService.totalPrice(); // Precio total
 
@@ -30,7 +30,7 @@ export class CarritoComponent implements OnInit{
   }
 
   restart(){
-    setTimeout(() => this.getCarrito(), 100); // Para actualizar el número
+    setTimeout(() => this.getCarrito(), 500); // Para actualizar el número
     this.ngOnInit()
   }
 

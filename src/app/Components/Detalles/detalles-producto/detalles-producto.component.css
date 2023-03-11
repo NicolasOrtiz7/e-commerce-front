@@ -1,0 +1,42 @@
+
+.div-container{
+    margin-left: 200px;
+    width: 100%;
+}
+
+.div-imagen{
+    margin-left: 200px;
+    display: inline-block; 
+    width: 30%; 
+    overflow: hidden;
+}
+
+.div-info{
+    display: inline-block; 
+    width: 40%;
+}
+
+img{
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 1200px){
+
+    .div-container{
+        margin-left: 50px;
+    }
+
+    .div-imagen{
+        margin-left: 0;
+        display: block; 
+        width: 100%; 
+    }
+
+    .div-info{
+        display: block; 
+        width: 100%;
+    }
+
+
+}
