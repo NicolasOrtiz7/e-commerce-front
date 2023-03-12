@@ -515,7 +515,7 @@
 <br>
 <div style="width: 80%; margin:0 auto; margin-bottom: 100px;">
 
-    <label> Filtrar por username o id:  </label>
+    <label> Filtrar por username o id: (por ahora solo por id) </label>
     <input [(ngModel)]="idOrUsername" style="width: 100px; height: 30px;" type="text">
     <button (click)="getComprasById(idOrUsername)" style="border:1px solid gray; margin-left: 15px;">buscar</button>
 
@@ -524,7 +524,7 @@
     <thead>
     <tr>
     <th>id compra</th>
-    <th>username</th>
+    <th>id, username</th>
     <th>id, producto</th>
     <th>cantidad</th>
     <th>total</th>
@@ -548,7 +548,7 @@
     <tbody>
     <tr *ngFor="let temp of compras">
     <td>{{temp.id}}</td>
-    <td>{{temp.compra.usuario.username}}</td>
+    <td>{{temp.compra.usuario.id}}, {{temp.compra.usuario.username}}</td>
     <td>{{temp.producto.id}}. {{temp.producto.nombre}}</td>
     <td>{{temp.cantidad}}</td>
     <td>precio total</td>

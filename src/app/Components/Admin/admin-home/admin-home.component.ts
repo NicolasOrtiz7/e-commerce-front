@@ -120,15 +120,11 @@ export class AdminHomeComponent implements OnInit{
 
   idOrUsername:any;
   getComprasById(id:number){
-    console.log("EL id a buscar es: " + id)
     this.compraService.getUsuarioCompras(id).subscribe(
       data => {this.compras = data
       console.log(this.compras)}
     )
   }
-  
-
-
 
 }
 
