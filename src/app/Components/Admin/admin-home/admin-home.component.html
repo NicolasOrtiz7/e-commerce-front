@@ -1,6 +1,5 @@
 <app-navbar></app-navbar>
 
-<button (click)="saveCompra()">Ejecutar</button>
 <br>
 <div class="h-auto max-w-lg mx-auto">
 
@@ -11,7 +10,7 @@
     <button data-modal-target="modalProducto" data-modal-toggle="modalProducto" type="button"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ver
         productos</button>
-        
+
     <button data-modal-target="modalCrearProducto" data-modal-toggle="modalCrearProducto" type="button"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Agregar
         producto</button>
@@ -24,7 +23,7 @@
     <button data-modal-target="modalCategoria" data-modal-toggle="modalCategoria" type="button"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ver
         Categorías</button>
-        
+
     <button data-modal-target="modalCrearCategoria" data-modal-toggle="modalCrearCategoria" type="button"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Agregar
         Categoría</button>
@@ -32,7 +31,8 @@
 
     <br><br>
     <!-- ================================================================= -->
-    <p class="text-4xl text-gray-900 dark:text-white font-semibold">Usuarios (implementar cuando se agregue seguridad)</p>
+    <p class="text-4xl text-gray-900 dark:text-white font-semibold">Usuarios (implementar cuando se agregue seguridad)
+    </p>
     <br>
 
     <button data-modal-target="modalUsuario" data-modal-toggle="modalUsuario" type="button"
@@ -42,6 +42,20 @@
     <button type="button"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Agregar
         Usuario</button>
+
+    <br><br>
+    <!-- ================================================================= -->
+    <p class="text-4xl text-gray-900 dark:text-white font-semibold">Compras</p>
+    <br>
+
+    <button (click)="getCompras()" data-modal-target="" data-modal-toggle="" type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cargar compras</button>
+
+    <button data-modal-target="" data-modal-toggle="" type="button"
+        class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"></button>
+
+    <br><br>
+    <!-- ================================================================= -->
 
 </div>
 
@@ -94,7 +108,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let temp of productos" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <tr *ngFor="let temp of productos"
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th style="max-width: 250px; overflow: auto;" scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <b>{{temp.id}}.</b> {{temp.nombre}}
@@ -106,7 +121,9 @@
                                 ${{temp.precio}}
                             </td>
                             <td class="px-6 py-4">
-                                <button (click)="getProductoById(temp.id)" data-modal-target="modalEditarProducto" data-modal-toggle="modalEditarProducto" data-modal-hide="modalCategoria" type="button"
+                                <button (click)="getProductoById(temp.id)" data-modal-target="modalEditarProducto"
+                                    data-modal-toggle="modalEditarProducto" data-modal-hide="modalCategoria"
+                                    type="button"
                                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Editar</button>
                                 <button (click)="deleteProducto(temp.id)" type="button"
                                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>
@@ -160,13 +177,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let temp of categorias" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <tr *ngFor="let temp of categorias"
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th style="max-width: 250px; overflow: auto;" scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <b>{{temp.id}}. </b>{{temp.nombre}}
                             </th>
                             <td class="px-6 py-4">
-                                <button (click)="getCategoriaById(temp.id)" data-modal-target="modalEditarCategoria" data-modal-toggle="modalEditarCategoria" data-modal-dismiss="modalCategoria" data-modal-hide="modalCategoria" type="button"
+                                <button (click)="getCategoriaById(temp.id)" data-modal-target="modalEditarCategoria"
+                                    data-modal-toggle="modalEditarCategoria" data-modal-dismiss="modalCategoria"
+                                    data-modal-hide="modalCategoria" type="button"
                                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Editar</button>
                                 <button (click)="deleteCategoria(temp.id)" type="button"
                                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>
@@ -231,36 +251,50 @@
                     <form (ngSubmit)="saveProducto()">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                                <input [(ngModel)]="producto.nombre" type="text" name="nombre" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombre del producto" required="">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <input [(ngModel)]="producto.nombre" type="text" name="nombre" id="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Nombre del producto" required="">
                             </div>
                             <div>
-                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
-                                <select [(ngModel)]="producto.categoria.id" name="categoria" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
+                                <select [(ngModel)]="producto.categoria.id" name="categoria" id="category"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="">Selecciona categoría</option>
-                                    <option *ngFor="let temp of categorias" 
-                                    [value]="temp.id">
-                                    {{temp.nombre}}</option>
+                                    <option *ngFor="let temp of categorias" [value]="temp.id">
+                                        {{temp.nombre}}</option>
                                 </select>
                             </div>
                             <div class="w-full">
-                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-                                <input [(ngModel)]="producto.precio" type="number" name="precio" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
+                                <label for="price"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+                                <input [(ngModel)]="producto.precio" type="number" name="precio" id="price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="$2999" required="">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-                                <textarea [(ngModel)]="producto.descripcion" name="descripcion" id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Descripción del producto"></textarea>
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+                                <textarea [(ngModel)]="producto.descripcion" name="descripcion" id="description"
+                                    rows="8"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Descripción del producto"></textarea>
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
-                                <input [(ngModel)]="producto.imagen" type="file" accept="image/*" name="imagen" id="imagen">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
+                                <input [(ngModel)]="producto.imagen" type="file" accept="image/*" name="imagen"
+                                    id="imagen">
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
+                        <button type="submit"
+                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
                     </form>
                 </div>
-              </section>
+            </section>
         </div>
     </div>
 </div>
@@ -302,19 +336,25 @@
                     <form (ngSubmit)="saveCategoria()">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                                <input [(ngModel)]="categoria.nombre" type="text" name="nombre" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombre de la categoría" required="">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <input [(ngModel)]="categoria.nombre" type="text" name="nombre" id="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Nombre de la categoría" required="">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
-                                <input [(ngModel)]="categoria.imagen" type="file" accept="image/*" name="imagen" id="imagen">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
+                                <input [(ngModel)]="categoria.imagen" type="file" accept="image/*" name="imagen"
+                                    id="imagen">
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
+                        <button type="submit"
+                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
                     </form>
                 </div>
-              </section>
+            </section>
         </div>
     </div>
 </div>
@@ -356,36 +396,50 @@
                     <form (ngSubmit)="updateProducto(producto.id, producto)">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                                <input [(ngModel)]="producto.nombre" type="text" name="nombre" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombre del producto" required="">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <input [(ngModel)]="producto.nombre" type="text" name="nombre" id="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Nombre del producto" required="">
                             </div>
                             <div>
-                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
-                                <select [(ngModel)]="producto.categoria.id" name="categoria" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
+                                <select [(ngModel)]="producto.categoria.id" name="categoria" id="category"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="">Selecciona categoría</option>
-                                    <option *ngFor="let temp of categorias" 
-                                    [value]="temp.id">
-                                    {{temp.nombre}}</option>
+                                    <option *ngFor="let temp of categorias" [value]="temp.id">
+                                        {{temp.nombre}}</option>
                                 </select>
                             </div>
                             <div class="w-full">
-                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-                                <input [(ngModel)]="producto.precio" type="number" name="precio" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
+                                <label for="price"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+                                <input [(ngModel)]="producto.precio" type="number" name="precio" id="price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="$2999" required="">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-                                <textarea [(ngModel)]="producto.descripcion" name="descripcion" id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Descripción del producto"></textarea>
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+                                <textarea [(ngModel)]="producto.descripcion" name="descripcion" id="description"
+                                    rows="8"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Descripción del producto"></textarea>
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
-                                <input [(ngModel)]="producto.imagen" type="file" accept="image/*" name="imagen" id="imagen">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
+                                <input [(ngModel)]="producto.imagen" type="file" accept="image/*" name="imagen"
+                                    id="imagen">
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
+                        <button type="submit"
+                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
                     </form>
                 </div>
-              </section>
+            </section>
         </div>
     </div>
 </div>
@@ -426,19 +480,25 @@
                     <form (ngSubmit)="updateCategoria(categoria.id, categoria)">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                                <input [(ngModel)]="categoria.nombre" type="text" name="nombre" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombre de la categoría" required="">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <input [(ngModel)]="categoria.nombre" type="text" name="nombre" id="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Nombre de la categoría" required="">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
-                                <input [(ngModel)]="categoria.imagen" type="file" accept="image/*" name="imagen" id="imagen">
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagen</label>
+                                <input [(ngModel)]="categoria.imagen" type="file" accept="image/*" name="imagen"
+                                    id="imagen">
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
+                        <button type="submit"
+                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
                     </form>
                 </div>
-              </section>
+            </section>
         </div>
     </div>
 </div>
@@ -446,5 +506,57 @@
 
 <!-- =============================================================== -->
 <!-- =============================================================== -->
+<!-- TABLA COMPRAS -->
+
+<p>Esta tabla se deberia cargar en un componente independiente para que 
+    no consuma muchos recursos.
+</p>
+<p>hay q corregir el backend para cargar las compras de cada usuario</p>
+<br>
+<div style="width: 80%; margin:0 auto; margin-bottom: 100px;">
+
+    <label> Filtrar por username o id:  </label>
+    <input [(ngModel)]="idOrUsername" style="width: 100px; height: 30px;" type="text">
+    <button (click)="getComprasById(idOrUsername)" style="border:1px solid gray; margin-left: 15px;">buscar</button>
+
+    <br><br>
+<table class="blueTable">
+    <thead>
+    <tr>
+    <th>id compra</th>
+    <th>username</th>
+    <th>id, producto</th>
+    <th>cantidad</th>
+    <th>total</th>
+    <th>fecha</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+    <td colspan="6">
+    <div class="links">
+        <a href="#">&laquo;</a> 
+        <a href="#">1</a> 
+        <a href="#">2</a> 
+        <a href="#">3</a> 
+        <a href="#">4</a> 
+        <a href="#">&raquo;</a>
+    </div>
+    </td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr *ngFor="let temp of compras">
+    <td>{{temp.id}}</td>
+    <td>{{temp.compra.usuario.username}}</td>
+    <td>{{temp.producto.id}}. {{temp.producto.nombre}}</td>
+    <td>{{temp.cantidad}}</td>
+    <td>precio total</td>
+    <td>{{temp.compra.fechaCompra}}</td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
 
 <div style="height: 500px;">.</div>

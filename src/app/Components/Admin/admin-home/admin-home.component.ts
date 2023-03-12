@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/Classes/categoria';
 import { Producto } from 'src/app/Classes/producto';
-import { Usuario } from 'src/app/Classes/usuario';
 import { CarritoService } from 'src/app/Services/carrito.service';
 import { CategoriaService } from 'src/app/Services/categoria.service';
 import { CompraService } from 'src/app/Services/compra.service';
@@ -28,7 +27,6 @@ export class AdminHomeComponent implements OnInit{
               private compraService:CompraService){}
 
   ngOnInit(): void {
-    this.getCarritoById()
     this.producto.categoria = this.categoria; // Asignar la categoria al producto
     this.getCategorias()
     this.getProductos()
@@ -108,27 +106,28 @@ export class AdminHomeComponent implements OnInit{
     } else alert("No eliminado")
   }
 
-  
   // =============================================================
 
-  carrito:any = [];
-  usuarioActual:Usuario;
-
-  getCarritoById(){
-    this.carritoService.getCarrito().subscribe(
-      data => this.carrito = data,
+  compras:any = [];
+  getCompras(){
+    this.compraService.getCompras().subscribe(
+      data => {
+        this.compras = data
+      },
       err => console.log(err)
     )
   }
 
-  saveCompra(){
-    this.compraService.saveCompra(this.carrito).subscribe(
-      data => {
-        console.log("Compra exitosa");
-        this.carritoService.cleanCarrito(this.carrito[0].usuario.id).subscribe();
-    },
-      err => console.log(err))
+  idOrUsername:any;
+  getComprasById(id:number){
+    console.log("EL id a buscar es: " + id)
+    this.compraService.getUsuarioCompras(id).subscribe(
+      data => {this.compras = data
+      console.log(this.compras)}
+    )
   }
+  
+
 
 
 }
