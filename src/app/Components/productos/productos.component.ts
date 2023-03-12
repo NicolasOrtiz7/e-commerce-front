@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/Classes/producto';
 import { CarritoService } from 'src/app/Services/carrito.service';
+import { CategoriaService } from 'src/app/Services/categoria.service';
 import { ProductoService } from 'src/app/Services/producto.service';
 
 @Component({
@@ -25,8 +26,10 @@ export class ProductosComponent implements OnInit {
 
   // Listas de productos
   productos: Producto[];
+  categorias: any;
   productoCategoria: any;
   cantidad: number;
+  filtradosPorNombre:any = [];
 
   // Categoría para el filtrado/ordenamiento
   categoria: string;
@@ -37,20 +40,22 @@ export class ProductosComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productoService: ProductoService,
+    private categoriaService: CategoriaService
   ) { }
 
 
   ngOnInit(): void {
     // Carga todos los productos al inicio
     this.listAllProductos();
-    this.countProductos()
+    this.countProductos();
+    this.getCategorias()
 
     // Carga los productos con parámetros al entrar con link o botones
     this.activatedRoute.queryParams.subscribe(params => {
       // Guarda los query params de la url
       this.queryParams = this.activatedRoute.snapshot.queryParams;
       // Llama al método que carga los productos y los filtra
-      this.productoService.listProductoCategoria(this.queryParams['categoria'], this.queryParams['categoria'])
+      this.productoService.listProductoCategoria(this.queryParams['categoria'], this.queryParams['orden']) // aca no sé por qué envío 2 veces el 'categoria' pero igual funciona
         .subscribe(
           data => {
             this.productoCategoria = data;
@@ -82,7 +87,8 @@ export class ProductosComponent implements OnInit {
     )
   }
 
-  countProductos() {
+  // Cantidad de productos que hay en cada categoria
+  countProductos() { // Hay que hacerlo dinamico
     this.productoService.listAllProductos().subscribe(
       data => {
         // this.productos = data;
@@ -100,6 +106,12 @@ export class ProductosComponent implements OnInit {
         });
       },
       err => { console.log(err) }
+    )
+  }
+
+  getCategorias(){
+    this.categoriaService.getCategorias().subscribe(
+      data => this.categorias = data
     )
   }
 

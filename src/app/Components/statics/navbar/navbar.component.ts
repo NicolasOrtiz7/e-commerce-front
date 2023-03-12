@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Carrito } from 'src/app/Classes/carrito';
 import { CarritoService } from 'src/app/Services/carrito.service';
 import { CategoriaService } from 'src/app/Services/categoria.service';
+import { ProductoService } from 'src/app/Services/producto.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,8 @@ export class NavbarComponent implements OnInit{
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private categoriaService:CategoriaService,
-    private carritoService:CarritoService
+    private carritoService:CarritoService,
+    private productoService:ProductoService
   ){}
 
   ngOnInit(): void {
@@ -72,6 +74,16 @@ export class NavbarComponent implements OnInit{
   restart(){
     setTimeout(() => this.getCarrito(2), 100); // Para actualizar el número
     this.ngOnInit()
+  }
+
+  keyword:string;
+  jaja:any = []
+  getProductosNombre(keyword:string){
+    this.productoService.listProductoNombre(keyword).subscribe(
+      data =>  {
+        this.jaja = data
+        console.log(this.jaja)
+      } )
   }
 
 }

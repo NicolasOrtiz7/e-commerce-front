@@ -21,6 +21,18 @@
                <span class="ml-3">Ver todo (arreglar)</span>
             </a>
          </li>
+<!-- ################################################### -->
+         <li *ngFor="let temp of categorias">
+            <a (click)="listProductoCategoria(temp.nombre)" [routerLink]="['/productos']" [queryParams]="{categoria: temp.nombre}"
+               class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+               <img src="https://cdn-icons-png.flaticon.com/512/8867/8867250.png" width="25px" alt="" />
+               <span class="flex-1 ml-3 whitespace-nowrap">{{temp.nombre}}</span>
+               <span
+                  class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">50%
+                  off</span>
+            </a>
+         </li>
+<!-- ################################################### -->
          <li >
             <a (click)="listProductoCategoria('remeras')" [routerLink]="['/productos']" [queryParams]="{categoria: 'remeras'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -141,6 +153,14 @@
       max-width: 33.33%;
    }
 </style>
+
+<!-- Productos filtrados por busqueda -->
+<!-- <div>
+   <li *ngFor="let temp2 of filtradosPorNombre">
+      <p>{{temp2.id}}</p>
+
+   </li>
+</div> -->
 
 
 

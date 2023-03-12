@@ -26,6 +26,11 @@ export class ProductoService {
     return this.http.get(this.URL + '/categoria', filtro);
   }
 
+  listProductoNombre(keyword:string) {
+    const filtro = { params: { search: keyword} };
+    return this.http.get(this.URL + '/filtrar', filtro);
+  }
+
   saveProducto(producto:Producto){
     return this.http.post(this.URL + "/nuevo", producto);
   }
