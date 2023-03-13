@@ -23,4 +23,8 @@ export class CompraService {
     return this.http.post(this.URL + "/save", carrito);
   }
 
+  getByIdOrUsername(keyword:string){
+    return this.http.get(this.URL + "/filtrar?keyword=" + keyword);
+  }
+
 }

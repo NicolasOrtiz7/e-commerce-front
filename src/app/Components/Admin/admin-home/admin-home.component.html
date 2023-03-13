@@ -49,7 +49,8 @@
     <br>
 
     <button (click)="getCompras()" data-modal-target="" data-modal-toggle="" type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cargar compras</button>
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cargar
+        todas las compras</button>
 
     <button data-modal-target="" data-modal-toggle="" type="button"
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"></button>
@@ -508,53 +509,52 @@
 <!-- =============================================================== -->
 <!-- TABLA COMPRAS -->
 
-<p>Esta tabla se deberia cargar en un componente independiente para que 
-    no consuma muchos recursos.
-</p>
-<p>hay q corregir el backend para cargar las compras de cada usuario</p>
+<p>deberia mostrarse cada compra con todos los productos y no por separado</p>
+<p>deberia implementar la paginacion</p>
+
 <br>
 <div style="width: 80%; margin:0 auto; margin-bottom: 100px;">
 
-    <label> Filtrar por username o id: (por ahora solo por id) </label>
+    <label> Filtrar por username o id: </label>
     <input [(ngModel)]="idOrUsername" style="width: 100px; height: 30px;" type="text">
     <button (click)="getComprasById(idOrUsername)" style="border:1px solid gray; margin-left: 15px;">buscar</button>
 
     <br><br>
-<table class="blueTable">
-    <thead>
-    <tr>
-    <th>id compra</th>
-    <th>id, username</th>
-    <th>id, producto</th>
-    <th>cantidad</th>
-    <th>total</th>
-    <th>fecha</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-    <td colspan="6">
-    <div class="links">
-        <a href="#">&laquo;</a> 
-        <a href="#">1</a> 
-        <a href="#">2</a> 
-        <a href="#">3</a> 
-        <a href="#">4</a> 
-        <a href="#">&raquo;</a>
-    </div>
-    </td>
-    </tr>
-    </tfoot>
-    <tbody>
-    <tr *ngFor="let temp of compras">
-    <td>{{temp.id}}</td>
-    <td>{{temp.compra.usuario.id}}, {{temp.compra.usuario.username}}</td>
-    <td>{{temp.producto.id}}. {{temp.producto.nombre}}</td>
-    <td>{{temp.cantidad}}</td>
-    <td>precio total</td>
-    <td>{{temp.compra.fechaCompra}}</td>
-    </tr>
-    </tbody>
+    <table class="blueTable">
+        <thead>
+            <tr>
+                <th>id compra</th>
+                <th>id, username</th>
+                <th>id, producto</th>
+                <th>cantidad</th>
+                <th>total</th>
+                <th>fecha</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div class="links">
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr *ngFor="let temp of compras">
+                <td>{{temp.id}}</td>
+                <td>{{temp.compra.usuario.id}}, {{temp.compra.usuario.username}}</td>
+                <td>{{temp.producto.id}}. {{temp.producto.nombre}}</td>
+                <td>{{temp.cantidad}}</td>
+                <td>precio total</td>
+                <td>{{temp.compra.fechaCompra}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>
 

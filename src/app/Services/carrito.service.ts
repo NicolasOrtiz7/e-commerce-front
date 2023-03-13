@@ -94,7 +94,7 @@ export class CarritoService {
     } else console.log('Error, la cantidad no puede ser negativa');
   }
 
-  cleanProductoImpl(id:number){
+  cleanProductoImpl(id: number) {
     this.cleanProducto(id).subscribe(data => console.log("Producto eliminado"), err => console.log(err))
   }
 
@@ -109,7 +109,8 @@ export class CarritoService {
   }
 
   // Hay que arreglar este método usando promesas (o async await, no me acuerdo cual)
-  precioTotal:number
+  // Este dato deberia traerlo desde el back end, agregarlo
+  precioTotal: number
   totalPrice() {
     let totalPrice = 0;
     let pxq = 0;
@@ -132,27 +133,4 @@ export class CarritoService {
     )
   }
 
- 
-
-
 }
-
-
-/*
-
-
-
-  - Arreglar botones que al ir a una página no funciona y hay que recargarla
-
-  - Sidebar Página para ver todos los productos sin filtros
-
-  - Página de producto
-
-
-  - Agregar seguridad
-
-  - Agregar carga de imágenes
-
-
-
-*/
