@@ -32,15 +32,15 @@ export class ProductoService {
   }
 
   saveProducto(producto:Producto){
-    return this.http.post(this.URL + "/nuevo", producto);
+    return this.http.post(this.URL + "/admin/nuevo", producto);
   }
 
   updateProducto(id:number, producto:Producto): Observable<any>{
-    return this.http.put(this.URL + "/edit/" + id, producto);
+    return this.http.put(this.URL + "/admin/edit/" + id, producto);
   }
 
   deleteProducto(id:number): Observable<any>{
-    return this.http.delete(this.URL + "/delete/" + id);
+    return this.http.delete(this.URL + "/admin/delete/" + id);
   }
 
 

@@ -7,15 +7,18 @@ import { DetallesProductoComponent } from './Components/Detalles/detalles-produc
 import { DetallesUsuarioComponent } from './Components/Detalles/detalles-usuario/detalles-usuario.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ProductosComponent } from './Components/productos/productos.component';
+import { AuthGuard } from './Security/Helpers/auth.guard';
+import { LoginComponent } from './Security/login/login.component';
 
 const routes: Routes = [
   {path:"home", component: HomeComponent},
   {path:"detalles/:id", component: DetallesProductoComponent},
   {path:"carrito", component: CarritoComponent},
   {path:"productos", component: ProductosComponent},
-  {path:"admin", component: AdminHomeComponent},
+  {path:"admin", component: AdminHomeComponent, canActivate: [AuthGuard]},
   {path:"finalizar-compra", component: FinalizarCompraComponent},
   {path:"testing", component: DetallesUsuarioComponent},
+  {path:"login", component: LoginComponent},
   {path:"**", redirectTo: "home"},
 ];
 
