@@ -26,6 +26,7 @@ export class CardComponent implements OnInit{
 
   ngOnInit(){
     this.getUsuarioActual()
+    console.log("EL usuario logeado en el card component es " + this.getUsuarioActual())
   }
 
   listProductoId(id:number){
@@ -41,19 +42,22 @@ export class CardComponent implements OnInit{
       data => this.usuarioActual = data )
     }
 
-  nuevoCarrito:any = {}; // Habia que inicializar!!!!!!!
+  nuevoCarrito:any = {}; 
 
   addCarrito(producto:Producto){
 
-    this.nuevoCarrito.productos = producto;
+    console.log("El actual usuaio res")
+    console.log(this.usuarioActual)
+
     this.nuevoCarrito.id = undefined; // Para que se envie vacio y el backend le asigne autoincrement
+    this.nuevoCarrito.productos = producto;
     this.nuevoCarrito.usuario = this.usuarioActual;
     
     console.log(this.nuevoCarrito)
 
     this.carritoService.addProductImpl(this.nuevoCarrito)
 
-    setTimeout(() => this.appComponent.getCarrito(2), 200); // Recargar el carrito
+    setTimeout(() => this.appComponent.getCarrito(this.usuarioActual), 200); // Refrescar el carrito
 
   }
 

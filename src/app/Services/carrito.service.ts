@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Carrito } from '../Classes/carrito';
 import { Producto } from '../Classes/producto';
+import { LoginService } from '../Security/login.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,10 @@ export class CarritoService {
   // Debe estar inicializado vacío
   carrito: Producto[] = []; // esta ya no lo uso mas, eliminar
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private loginService:LoginService
+    ) { }
 
   // ====================================================
 
@@ -34,9 +38,8 @@ export class CarritoService {
 
   // ====================================================
 
-  // Obtiene el usuario con ID:2 simulando que está logeado (cambiar al implementar login)
   getUsuarioActual() {
-    return this.http.get('http://localhost:8080/usuarios' + '/listar/' + 2);
+    return this.http.get('http://localhost:8080/usuarios' + '/listar/' + this.loginService.getCurrentUser());
   }
 
   // Recibe todos los carritos de compras de todos los usuarios (no usar para nada)
@@ -44,9 +47,11 @@ export class CarritoService {
     return this.http.get(this.URL + '/listar');
   }
 
-  // Recibe el carrito de compras de un usuario (usar cuando implemente el login)
-  getCarrito(/*id:number*/) {
-    return this.http.get(this.URL + '/listar/' + 2); //despues agregar el parametro id:number
+  // Obtiene el carrito del usuario logeado
+  //  (puede falsificarse el usuario cambiando el valor del id en el localStorage, arreglar)
+  getCarrito() {
+    console.log("El usuario logeado es " + this.loginService.getCurrentUser())
+    return this.http.get(this.URL + '/listar/' + this.loginService.getCurrentUser());
   }
 
   addProduct(carrito: Carrito) {

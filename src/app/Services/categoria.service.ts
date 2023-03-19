@@ -23,15 +23,15 @@ export class CategoriaService {
   }
 
   saveCategoria(categoria:Categoria){
-    return this.http.post(this.URL + "/nuevo", categoria);
+    return this.http.post(this.URL + "/admin/nuevo", categoria);
   }
 
   updateCategoria(id:number, categoria:Categoria){
-    return this.http.put(this.URL + "/editar/" + id, categoria);
+    return this.http.put(this.URL + "/admin/editar/" + id, categoria);
   }
 
   deleteCategoria(id:number){
-    return this.http.delete(this.URL + "/eliminar/" + id);
+    return this.http.delete(this.URL + "/admin/eliminar/" + id);
   }
 
 }

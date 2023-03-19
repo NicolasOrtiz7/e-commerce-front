@@ -20,69 +20,88 @@ export class LoginService {
 
   URL = "http://localhost:8080/login";
 
-//   login(creds: any) {
-//     return this.http.post("http://localhost:8080/api/v1/auth/authenticate", creds, {
-//       observe: 'response'
-//     })
-//       .pipe(
-//         map((response: HttpResponse<any>) => {
+  //   login(creds: any) {
+  //     return this.http.post("http://localhost:8080/api/v1/auth/authenticate", creds, {
+  //       observe: 'response'
+  //     })
+  //       .pipe(
+  //         map((response: HttpResponse<any>) => {
 
-// console.log("Este es el response")
-// console.log(response)
-// console.log("Este es el response")
+  // console.log("Este es el response")
+  // console.log(response)
+  // console.log("Este es el response")
 
-// console.log("1")
-//           const body = response.body;
-//           console.log("2")
-//           const headers = response.headers;
-//           console.log("3")
-//           console.log("estos son los headers")
-//           console.log(headers)
+  // console.log("1")
+  //           const body = response.body;
+  //           console.log("2")
+  //           const headers = response.headers;
+  //           console.log("3")
+  //           console.log("estos son los headers")
+  //           console.log(headers)
 
-//           const bearerToken = headers.get('Authorization')!;
-//           console.log("4")
-//           console.log("ESte es el bearer token")
-//           console.log(bearerToken)
-//           const token = bearerToken.replace('Bearer ', '');
-//           console.log("5")
+  //           const bearerToken = headers.get('Authorization')!;
+  //           console.log("4")
+  //           console.log("ESte es el bearer token")
+  //           console.log(bearerToken)
+  //           const token = bearerToken.replace('Bearer ', '');
+  //           console.log("5")
 
-//           localStorage.setItem('token', token);
-//           console.log("6")
-//           return token;
+  //           localStorage.setItem('token', token);
+  //           console.log("6")
+  //           return token;
 
-//         }))
-//   }
+  //         }))
+  //   }
 
-// login(creds:any){
-//   console.log(" ############################################################# ")
-//   return this.http.post<any>("http://localhost:8080/api/v1/auth/authenticate", creds)
-//       .pipe(
-//         map(response => {
-//           // login successful if there's a jwt token in the response
-//           const token = response && response.token;
-//           if (token) {
-//             // store user details and jwt token in local storage to keep user logged in between page refreshes
-//             localStorage.setItem('currentUser', JSON.stringify({ creds, token }));
-//           }
-//           console.log(" ############################################################# ")
-//           return response;
-//         })
-//       );
-//   }
+  // login(creds:any){
+  //   console.log(" ############################################################# ")
+  //   return this.http.post<any>("http://localhost:8080/api/v1/auth/authenticate", creds)
+  //       .pipe(
+  //         map(response => {
+  //           // login successful if there's a jwt token in the response
+  //           const token = response && response.token;
+  //           if (token) {
+  //             // store user details and jwt token in local storage to keep user logged in between page refreshes
+  //             localStorage.setItem('currentUser', JSON.stringify({ creds, token }));
+  //           }
+  //           console.log(" ############################################################# ")
+  //           return response;
+  //         })
+  //       );
+  //   }
 
-login(creds:any): Observable<any> {
-  const credentials = { creds };
-  return this.http.post("http://localhost:8080/api/v1/auth/authenticate", creds).pipe(
-    tap((response: any) => {
-      const token = response.token;
-      localStorage.setItem("token", token);
-    })
-  );
-}
+  login(creds: any): Observable<any> {
+    const credentials = { creds };
+    return this.http.post("http://localhost:8080/api/v1/auth/authenticate", creds).pipe(
+      tap((response: any) => {
+
+        console.log("Respuesta")
+        console.log(response)
+        console.log("Respuesta")
+
+        const token = response.token;
+        const currentUser = response.userId;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("currentUser", currentUser);
+      })
+    );
+  }
+
+  logout() {
+    console.log("Borrando metodo")
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentUser");
+    return this.http.get("/api/v1/auth/logout") // ruta para hacer logout en el backend
+  }
 
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  getCurrentUser() {
+    return localStorage.getItem("currentUser");
   }
 
 

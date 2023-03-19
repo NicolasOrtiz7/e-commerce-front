@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Carrito } from 'src/app/Classes/carrito';
+import { LoginService } from 'src/app/Security/login.service';
 import { CarritoService } from 'src/app/Services/carrito.service';
 import { CategoriaService } from 'src/app/Services/categoria.service';
 import { ProductoService } from 'src/app/Services/producto.service';
@@ -21,7 +22,8 @@ export class NavbarComponent implements OnInit{
     private activatedRoute:ActivatedRoute,
     private categoriaService:CategoriaService,
     private carritoService:CarritoService,
-    private productoService:ProductoService
+    private productoService:ProductoService,
+    private loginService:LoginService
   ){}
 
   ngOnInit(): void {
@@ -84,6 +86,10 @@ export class NavbarComponent implements OnInit{
         this.jaja = data
         console.log(this.jaja)
       } )
+  }
+
+  logout(){
+    this.loginService.logout();
   }
 
 }
