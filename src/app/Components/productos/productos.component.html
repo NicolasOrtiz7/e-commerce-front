@@ -21,7 +21,7 @@
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
       <ul class="space-y-2">
          <li>
-            <a (click)="listAllProductos()" [routerLink]="['/productos']"
+            <a (click)="getAllProductos()" [routerLink]="['/productos']"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" width="25px" alt="" />
                <span class="ml-3">Ver todo (arreglar)</span>
@@ -29,7 +29,7 @@
          </li>
          <!-- ################################################### -->
          <li *ngFor="let temp of categorias">
-            <a (click)="listProductoCategoria(temp.nombre)" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria(temp.nombre)" [routerLink]="['/productos']"
                [queryParams]="{categoria: temp.nombre}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/8867/8867250.png" width="25px" alt="" />
@@ -41,7 +41,7 @@
          </li>
          <!-- ################################################### -->
          <li>
-            <a (click)="listProductoCategoria('remeras')" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria('remeras')" [routerLink]="['/productos']"
                [queryParams]="{categoria: 'remeras'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/8867/8867250.png" width="25px" alt="" />
@@ -52,7 +52,7 @@
             </a>
          </li>
          <li>
-            <a (click)="listProductoCategoria('buzos')" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria('buzos')" [routerLink]="['/productos']"
                [queryParams]="{categoria: 'buzos'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/8867/8867250.png" width="25px" alt="" />
@@ -63,7 +63,7 @@
             </a>
          </li>
          <li>
-            <a (click)="listProductoCategoria('pantalones')" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria('pantalones')" [routerLink]="['/productos']"
                [queryParams]="{categoria: 'pantalones'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/1720/1720723.png" width="25px" alt="" />
@@ -74,7 +74,7 @@
             </a>
          </li>
          <li>
-            <a (click)="listProductoCategoria('camperas')" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria('camperas')" [routerLink]="['/productos']"
                [queryParams]="{categoria: 'camperas'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/2806/2806118.png" width="25px" alt="" />
@@ -85,7 +85,7 @@
             </a>
          </li>
          <li>
-            <a (click)="listProductoCategoria('gorros')" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria('gorros')" [routerLink]="['/productos']"
                [queryParams]="{categoria: 'gorros'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/3086/3086204.png" width="25px" alt="" />
@@ -96,7 +96,7 @@
             </a>
          </li>
          <li>
-            <a (click)="listProductoCategoria('calzado')" [routerLink]="['/productos']"
+            <a (click)="getProductoCategoria('calzado')" [routerLink]="['/productos']"
                [queryParams]="{categoria: 'calzado'}"
                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <img src="https://cdn-icons-png.flaticon.com/512/2043/2043907.png" width="25px" alt="" />
@@ -127,24 +127,24 @@
       <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             <li>
-               <a (click)="listProductoCategoria(categoria, 'BARATO')" [routerLink]="['/productos']"
+               <a (click)="getProductoCategoria(categoria, 'BARATO')" [routerLink]="['/productos']"
                   [queryParams]="{categoria: categoria, orden: 'precio-menor'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Precio: Menor a
                   mayor</a>
             </li>
             <li>
-               <a (click)="listProductoCategoria(categoria, 'CARO')" [routerLink]="['/productos']"
+               <a (click)="getProductoCategoria(categoria, 'CARO')" [routerLink]="['/productos']"
                   [queryParams]="{categoria: categoria, orden: 'precio-mayor'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Precio: Mayor a
                   menor</a>
             </li>
             <li>
-               <a (click)="listProductoCategoria(categoria, 'ASC')" [routerLink]="['/productos']"
+               <a (click)="getProductoCategoria(categoria, 'ASC')" [routerLink]="['/productos']"
                   [queryParams]="{categoria: categoria, orden: 'a-z'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nombre: A-Z</a>
             </li>
             <li>
-               <a (click)="listProductoCategoria(categoria, 'DESC')" [routerLink]="['/productos']"
+               <a (click)="getProductoCategoria(categoria, 'DESC')" [routerLink]="['/productos']"
                   [queryParams]="{categoria: categoria, orden: 'z-a'}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Nombre: Z-A</a>
             </li>

@@ -26,7 +26,7 @@ export class DetallesProductoComponent implements OnInit{
   }
 
   getDetails(id:number){
-    this.productoService.listProductoId(id).subscribe(
+    this.productoService.getProductoId(id).subscribe(
       data => this.producto = data,
       err => console.log(err)
     )

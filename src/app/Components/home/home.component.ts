@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit{
     }
 
     listAllProductos(){
-      this.productoService.listAllProductos().subscribe(
+      this.productoService.getAllProductos().subscribe(
         data => {
           this.productos = data;
         },

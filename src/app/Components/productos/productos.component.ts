@@ -29,7 +29,7 @@ export class ProductosComponent implements OnInit {
   categorias: any;
   productoCategoria: any;
   cantidad: number;
-  filtradosPorNombre:any = [];
+  filtradosPorNombre: any = [];
 
   // Categoría para el filtrado/ordenamiento
   categoria: string;
@@ -46,7 +46,7 @@ export class ProductosComponent implements OnInit {
 
   ngOnInit(): void {
     // Carga todos los productos al inicio
-    this.listAllProductos();
+    this.getAllProductos();
     this.countProductos();
     this.getCategorias()
 
@@ -55,7 +55,7 @@ export class ProductosComponent implements OnInit {
       // Guarda los query params de la url
       this.queryParams = this.activatedRoute.snapshot.queryParams;
       // Llama al método que carga los productos y los filtra
-      this.productoService.listProductoCategoria(this.queryParams['categoria'], this.queryParams['orden']) // aca no sé por qué envío 2 veces el 'categoria' pero igual funciona
+      this.productoService.getProductoCategoria(this.queryParams['categoria'], this.queryParams['orden']) // aca no sé por qué envío 2 veces el 'categoria' pero igual funciona
         .subscribe(
           data => {
             this.productoCategoria = data;
@@ -67,16 +67,16 @@ export class ProductosComponent implements OnInit {
   }
 
   // Cargar el número de prendas que hay en cada categoría
-  listAllProductos() {
-    this.productoService.listAllProductos().subscribe(
+  getAllProductos() {
+    this.productoService.getAllProductos().subscribe(
       data => this.productos = data,
       err => console.log(err)
     )
   }
 
   // Carga los productos al presionar los botones del sidebar y del "ordenar por"
-  listProductoCategoria(categoria: string, orden: string = "ASC") {
-    this.productoService.listProductoCategoria(categoria, orden).subscribe(
+  getProductoCategoria(categoria: string, orden: string = "ASC") {
+    this.productoService.getProductoCategoria(categoria, orden).subscribe(
       data => {
         this.productoCategoria = data;
 
@@ -88,8 +88,8 @@ export class ProductosComponent implements OnInit {
   }
 
   // Cantidad de productos que hay en cada categoria
-  countProductos() { // Hay que hacerlo dinamico
-    this.productoService.listAllProductos().subscribe(
+  countProductos() { // Hay que traer este dato del back end
+    this.productoService.getAllProductos().subscribe(
       data => {
         // this.productos = data;
 
@@ -104,12 +104,11 @@ export class ProductosComponent implements OnInit {
           if (a == "gorros") this.gorros++
 
         });
-      },
-      err => { console.log(err) }
+      }, err => console.log(err)
     )
   }
 
-  getCategorias(){
+  getCategorias() {
     this.categoriaService.getCategorias().subscribe(
       data => this.categorias = data
     )

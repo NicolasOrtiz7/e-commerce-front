@@ -59,17 +59,17 @@ export class NavbarComponent implements OnInit{
 
   
   addQuantity(carrito:Carrito){
-    this.carritoService.addProductImpl(carrito);
+    this.carritoService.addProductSub(carrito);
     this.restart()
   }
 
   removeQuantity(carrito:Carrito){
-    this.carritoService.subtractProductImpl(carrito);
+    this.carritoService.subtractProductSub(carrito);
     this.restart()
   }
 
   cleanCarrito(carrito:Carrito){
-    this.carritoService.cleanProductoImpl(carrito.id)
+    this.carritoService.cleanProductoSub(carrito.id)
     this.restart()
   }
 
@@ -81,7 +81,7 @@ export class NavbarComponent implements OnInit{
   keyword:string;
   jaja:any = []
   getProductosNombre(keyword:string){
-    this.productoService.listProductoNombre(keyword).subscribe(
+    this.productoService.getProductoNombre(keyword).subscribe(
       data =>  {
         this.jaja = data
         console.log(this.jaja)

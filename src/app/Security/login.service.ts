@@ -27,34 +27,19 @@ export class LoginService {
   //       .pipe(
   //         map((response: HttpResponse<any>) => {
 
-  // console.log("Este es el response")
-  // console.log(response)
-  // console.log("Este es el response")
-
-  // console.log("1")
   //           const body = response.body;
-  //           console.log("2")
   //           const headers = response.headers;
-  //           console.log("3")
-  //           console.log("estos son los headers")
-  //           console.log(headers)
 
   //           const bearerToken = headers.get('Authorization')!;
-  //           console.log("4")
-  //           console.log("ESte es el bearer token")
-  //           console.log(bearerToken)
   //           const token = bearerToken.replace('Bearer ', '');
-  //           console.log("5")
 
   //           localStorage.setItem('token', token);
-  //           console.log("6")
   //           return token;
 
   //         }))
   //   }
 
   // login(creds:any){
-  //   console.log(" ############################################################# ")
   //   return this.http.post<any>("http://localhost:8080/api/v1/auth/authenticate", creds)
   //       .pipe(
   //         map(response => {
@@ -89,7 +74,7 @@ export class LoginService {
   }
 
   logout() {
-    console.log("Borrando metodo")
+    console.log("localStorage eliminado")
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
     return this.http.get("/api/v1/auth/logout") // ruta para hacer logout en el backend

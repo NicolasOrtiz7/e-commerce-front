@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto } from '../Classes/producto';
-import { Categoria } from '../Classes/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +12,20 @@ export class ProductoService {
 
   constructor(private http:HttpClient) { }
 
-  listAllProductos(): Observable<Producto[]>{
+  getAllProductos(): Observable<Producto[]>{
     return this.http.get<Producto[]>(this.URL + "/listar");
   }
 
-  listProductoId(id:number): Observable<Producto>{
+  getProductoId(id:number): Observable<Producto>{
     return this.http.get<Producto>(this.URL + "/listar/"+id);
   }
 
-  listProductoCategoria(cat: string, orden:string) {
+  getProductoCategoria(cat: string, orden:string) {
     const filtro = { params: { categoria: cat, orden:orden } };
     return this.http.get(this.URL + '/categoria', filtro);
   }
 
-  listProductoNombre(keyword:string) {
+  getProductoNombre(keyword:string) {
     const filtro = { params: { search: keyword} };
     return this.http.get(this.URL + '/filtrar', filtro);
   }

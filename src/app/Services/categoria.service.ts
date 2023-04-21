@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UrlHandlingStrategy } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Categoria } from '../Classes/categoria';
 

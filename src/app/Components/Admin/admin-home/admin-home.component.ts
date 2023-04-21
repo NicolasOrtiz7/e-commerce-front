@@ -33,13 +33,13 @@ export class AdminHomeComponent implements OnInit {
   }
 
   getProductoById(id: number) {
-    this.productoService.listProductoId(id).subscribe(
+    this.productoService.getProductoId(id).subscribe(
       data => this.producto = data,
       err => console.log(err))
   }
 
   getProductos() {
-    this.productoService.listAllProductos().subscribe(
+    this.productoService.getAllProductos().subscribe(
       data => this.productos = data,
       err => console.log(err))
   }
@@ -130,6 +130,6 @@ export class AdminHomeComponent implements OnInit {
 
 }
 
-// Al presionar el botón de editar lanza algunos errores en consola,
-// pero funciona bien al editar y guardar.
-// Al recargar la página, las imágenes no se cargan al editar (el nombre de la imagen)
+// Al presionar el botón de editar lanza algunos errores en consola, pero
+// funciona bien al editar y guardar.
+// Al recargar la página, las imágenes no se cargan al apretar el botón de editar (el nombre de la imagen)

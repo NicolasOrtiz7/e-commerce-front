@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrito } from 'src/app/Classes/carrito';
-import { Producto } from 'src/app/Classes/producto';
 import { CarritoService } from 'src/app/Services/carrito.service';
 
 @Component({
@@ -8,15 +7,15 @@ import { CarritoService } from 'src/app/Services/carrito.service';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit{
+export class CarritoComponent implements OnInit {
 
-  precioTotal:any;
+  totalPrice: any;
 
-  carritoDeCompras:any = [];
-  
-  getTotalPrice:any = this.carritoService.totalPrice(); // Precio total
+  carrito: any = [];
 
-  constructor(private carritoService:CarritoService){}
+  getTotalPrice: any = this.carritoService.totalPrice(); // Precio total
+
+  constructor(private carritoService: CarritoService) { }
 
   ngOnInit(): void {
     this.getCarrito()
@@ -25,32 +24,32 @@ export class CarritoComponent implements OnInit{
     // Pone un SetTimeout para simular el tiempo que tarda en hacer la peticion,
     // esto se tiene que arreglar con promesas
     this.carritoService.totalPrice()
-    setTimeout(() => this.precioTotal = this.carritoService.precioTotal, 500);
-    
+    setTimeout(() => this.totalPrice = this.carritoService.precioTotal, 500);
+
   }
 
-  restart(){
+  restart() {
     setTimeout(() => this.getCarrito(), 500); // Para actualizar el número
     this.ngOnInit()
   }
 
-  getCarrito(/*id:number*/){ // Despues agregar el parametro id:number
+  getCarrito(/*id:number*/) { // Despues agregar el parametro id:number
     this.carritoService.getCarrito(/*id*/).subscribe(
-      data => this.carritoDeCompras = data)
+      data => this.carrito = data)
   }
 
-  addQuantity(carrito:Carrito){
-    this.carritoService.addProductImpl(carrito);
+  addQuantity(carrito: Carrito) {
+    this.carritoService.addProductSub(carrito);
     this.restart()
   }
 
-  removeQuantity(carrito:Carrito){
-    this.carritoService.subtractProductImpl(carrito);
+  removeQuantity(carrito: Carrito) {
+    this.carritoService.subtractProductSub(carrito);
     this.restart()
   }
 
-  cleanProducto(carrito:Carrito){
-    this.carritoService.cleanProductoImpl(carrito.id)
+  cleanProducto(carrito: Carrito) {
+    this.carritoService.cleanProductoSub(carrito.id)
     this.restart()
   }
 
