@@ -26,4 +26,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 4. Ejecuta el siguiente comando: git clone [URL de este repositorio]
 5. Espera a que se descargue el proyecto, cuando termine abre la carpeta
 6. Instala las dependencias del proyecto ejecutando el siguiente comando: "npm install"
-7. Cuando se descargue todo, ejecuta el siguiente comando: "ng server -open"
+7. Cuando se descargue todo, ejecuta el siguiente comando: "ng serve -open"
