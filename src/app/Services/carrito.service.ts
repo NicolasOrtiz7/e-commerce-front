@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Carrito } from '../Classes/carrito';
 import { Producto } from '../Classes/producto';
 import { LoginService } from '../Security/login.service';
+import { Usuario } from '../Classes/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,11 @@ export class CarritoService {
   // ====================================================
 
   getUsuarioActual() {
-    return this.http.get(this.URL_USUARIOS + '/listar/' + this.loginService.getCurrentUser());
+    if(localStorage.getItem("currentUser") && localStorage.getItem("token")){
+
+      return this.http.get(this.URL_USUARIOS + '/listar/' + this.loginService.getCurrentUser());
+    }
+    return this.http.get(this.URL_USUARIOS + '/listar/2652463636346362'); // arreglar despues. el id es inventado, borrarlo
   }
 
 

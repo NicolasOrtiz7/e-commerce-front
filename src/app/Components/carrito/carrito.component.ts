@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrito } from 'src/app/Classes/carrito';
 import { CarritoService } from 'src/app/Services/carrito.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-carrito',
@@ -15,7 +16,7 @@ export class CarritoComponent implements OnInit {
 
   getTotalPrice: any = this.carritoService.totalPrice(); // Precio total
 
-  constructor(private carritoService: CarritoService) { }
+  constructor(private carritoService: CarritoService, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
     this.getCarrito()
@@ -34,25 +35,50 @@ export class CarritoComponent implements OnInit {
   }
 
   getCarrito(/*id:number*/) { // Despues agregar el parametro id:number
-    this.carritoService.getCarrito(/*id*/).subscribe(
-      data => this.carrito = data)
+    if(localStorage.getItem("currentUser") && localStorage.getItem("token")){
+      this.carritoService.getCarrito(/*id*/).subscribe(
+        data => this.carrito = data)
+    } else{
+      this.carrito= this.appComponent.carritoLocalStorage
+    }
   }
 
   addQuantity(carrito: Carrito) {
-    this.carritoService.addProductSub(carrito);
-    this.restart()
+    // Encuentra el índice del objeto en el carrito basándote en el id del producto
+    const index = this.carrito.findIndex((item: { productos: { id: number; }; }) => item.productos.id === carrito.productos.id);
+  
+    // Verifica si se encontró el objeto en el carrito
+    if (index !== -1) {
+      // Aumenta la cantidad del objeto recibido por parámetro
+      this.carrito[index].cantidad++;
+    } else {
+      this.carrito.push(carrito);
+    }
+  
+    // Actualiza el localStorage con el carrito modificado
+    localStorage.setItem("cart", JSON.stringify(this.carrito));
   }
 
   removeQuantity(carrito: Carrito) {
-    this.carritoService.subtractProductSub(carrito);
-    this.restart()
+    const index = this.carrito.findIndex((item: { productos: { id: number; }; }) => item.productos.id === carrito.productos.id);
+  
+    if (index !== -1) {
+      if (this.carrito[index].cantidad > 1) {
+        this.carrito[index].cantidad--;
+      } else {
+        this.carrito.splice(index, 1); // Elimina el objeto del array
+      }
+  
+      localStorage.setItem("cart", JSON.stringify(this.carrito));
+    } else {
+      console.error('El objeto no se encuentra en el carrito.');
+    }
   }
 
-  cleanProducto(carrito: Carrito) {
-    this.carritoService.cleanProductoSub(carrito.id)
-    this.restart()
-  }
-
+  cleanProducto(carrito: Carrito){
+    const index = this.carrito.findIndex((item: { productos: { id: number; }; }) => item.productos.id === carrito.productos.id);
+    this.carrito.splice(index, 1);
+    }
 
 
 }

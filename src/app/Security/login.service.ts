@@ -60,15 +60,19 @@ export class LoginService {
     return this.http.post("http://localhost:8080/api/v1/auth/authenticate", creds).pipe(
       tap((response: any) => {
 
+        //#################
         console.log("Respuesta")
         console.log(response)
         console.log("Respuesta")
+        // ################
 
         const token = response.token;
         const currentUser = response.userId;
 
+        let userEncrypted = this.encryptCurrentUser(currentUser);
+
         localStorage.setItem("token", token);
-        localStorage.setItem("currentUser", currentUser);
+        localStorage.setItem("currentUser", userEncrypted.toString());
       })
     );
   }
@@ -85,8 +89,29 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
-  getCurrentUser() {
-    return localStorage.getItem("currentUser");
+  getCurrentUser() { // Para que no pueda cambiar el currentUser del localStorage y obtener datos de sesión de otro usuario, aplico una fórmula simple para encriptar (temporal hasta aprender como hacerlo con spring security y jwt)
+    let u = localStorage.getItem("currentUser");
+    let num;
+
+    if(u !== null){
+      num = parseFloat(u);
+      return this.decryptCurrentUser(num);
+    }
+    return console.log("login.service: no existe currentUser en localStorage");
+  }
+
+  getTokenValid() {
+    return localStorage.getItem('tokenValid');
+  }
+
+  encryptCurrentUser(num: number) {
+    let numEncrypted = (num * 2) / 6;
+    return numEncrypted;
+  }
+  
+  decryptCurrentUser(numEncrypted: number) {
+    let num = (numEncrypted / 2) * 6;
+    return num;
   }
 
 

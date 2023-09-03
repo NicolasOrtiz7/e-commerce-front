@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/Security/login.service';
 import { CarritoService } from 'src/app/Services/carrito.service';
 import { CategoriaService } from 'src/app/Services/categoria.service';
 import { ProductoService } from 'src/app/Services/producto.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,8 @@ import { ProductoService } from 'src/app/Services/producto.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
+
+  cartLocalStorageExists: boolean;
 
   categorias:any;
   carritoDeCompras: any = []
@@ -23,7 +26,8 @@ export class NavbarComponent implements OnInit{
     private categoriaService:CategoriaService,
     private carritoService:CarritoService,
     private productoService:ProductoService,
-    private loginService:LoginService
+    private loginService:LoginService,
+    private appComponent:AppComponent
   ){}
 
   ngOnInit(): void {
@@ -43,8 +47,16 @@ export class NavbarComponent implements OnInit{
   comprar() { this.router.navigate(["/carrito"]) }
 
   getCarrito(id: number) {
-    this.carritoService.getCarrito(/*id*/).subscribe(
-      data => this.carritoDeCompras = data )
+    if(localStorage.getItem("currentUser") && localStorage.getItem("token")){
+
+      this.carritoService.getCarrito(/*id*/).subscribe(
+        data => {
+          this.carritoDeCompras = data
+          console.log(data)
+        } )
+    } else{
+      this.carritoDeCompras = this.appComponent.carritoLocalStorage;
+    }
   }
 
   deleteCarrito(id: number) {
@@ -59,17 +71,24 @@ export class NavbarComponent implements OnInit{
 
   
   addQuantity(carrito:Carrito){
-    this.carritoService.addProductSub(carrito);
-    this.restart()
+    if(this.cartLocalStorageExists)this.carritoService.addProductSub(carrito);
+    else{
+      this.appComponent.addQuantity(carrito);
+      this.restart();
+    }
   }
 
   removeQuantity(carrito:Carrito){
-    this.carritoService.subtractProductSub(carrito);
-    this.restart()
+    if(this.cartLocalStorageExists) this.carritoService.subtractProductSub(carrito);
+    else{
+      this.appComponent.removeQuantity(carrito);
+      this.restart();
+    }
   }
 
   cleanCarrito(carrito:Carrito){
-    this.carritoService.cleanProductoSub(carrito.id)
+    if(this.cartLocalStorageExists) this.carritoService.cleanProductoSub(carrito.id)
+    else this.appComponent.cleanProductoFromCart(carrito);
     this.restart()
   }
 
@@ -90,6 +109,7 @@ export class NavbarComponent implements OnInit{
 
   logout(){
     this.loginService.logout();
+    localStorage.removeItem("cart");
   }
 
 }
