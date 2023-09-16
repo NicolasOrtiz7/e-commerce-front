@@ -3,7 +3,8 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
 ## Importante
-- La seguridad está en la rama test-seguridad, pero no está implementada al 100%
+- El proyecto no está terminado al 100%, puede tener algunos errores
+- La seguridad no está terminada, falta corregir algunas cosas
 - Faltan corregir algunos defectos de diseño
 
 ## Descripción
