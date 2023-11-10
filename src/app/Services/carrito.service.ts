@@ -52,11 +52,11 @@ export class CarritoService {
   }
 
   addProducto(carrito: Carrito) {
-    return this.http.post(this.URL_CARRITO + '/nuevo', carrito);
+    return this.http.put(this.URL_CARRITO + '/nuevo', carrito);
   }
 
   subtractProducto(carrito: Carrito) {
-    return this.http.post(this.URL_CARRITO + '/restar', carrito);
+    return this.http.put(this.URL_CARRITO + '/restar', carrito);
   }
 
   cleanProducto(id: number) {
@@ -86,11 +86,13 @@ export class CarritoService {
       this.cleanCarrito(carrito.id).subscribe(
         data => console.log('Carrito limpiado'))
     }
-
-    if (carrito.cantidad > 0) { // Si el producto existe en el carrito, se le resta 1
-      this.subtractProducto(carrito).subscribe(
-        data => console.log('Restado 1 cantidad'));
-    } else console.log('Error, la cantidad no puede ser negativa');
+    else {
+      if (carrito.cantidad > 0) { // Si el producto existe en el carrito, se le resta 1
+        this.subtractProducto(carrito).subscribe(
+          data => console.log('Restado 1 cantidad'));
+      } else console.log('Error, la cantidad no puede ser negativa');
+    }
+    
   }
 
 
